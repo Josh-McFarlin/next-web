@@ -2,8 +2,8 @@ import * as React from "react";
 import BlogPost from "../../components/cms/BlogPost";
 import { getSiteConfig } from "../../utils/sanity/actions/siteConfig";
 import { getAllPosts } from "../../utils/sanity/actions/post";
-import { SiteConfigType } from "../../../../types/siteConfig";
-import { PostType } from "../../../../types/post";
+import { SiteConfigType } from "../../../types/siteConfig";
+import { PostType } from "../../../types/post";
 import Layout from "../../components/Layout";
 
 interface PropTypes {

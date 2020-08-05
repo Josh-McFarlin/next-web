@@ -8,8 +8,8 @@ import {
   getPostAndMorePosts,
 } from "../../utils/sanity/actions/post";
 import { getSiteConfig } from "../../utils/sanity/actions/siteConfig";
-import { PostType } from "../../../../types/post";
-import { SiteConfigType } from "../../../../types/siteConfig";
+import { PostType } from "../../../types/post";
+import { SiteConfigType } from "../../../types/siteConfig";
 
 interface PropTypes {
   siteConfig: SiteConfigType;

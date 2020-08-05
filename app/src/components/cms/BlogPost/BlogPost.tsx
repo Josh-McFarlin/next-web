@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import SimpleBlockContent from "../SimpleBlockContent";
 import { imageBuilder } from "../../../utils/sanity/client";
-import { PostType } from "../../../../../types/post";
+import { PostType } from "../../../../types/post";
 import urls from "../../../utils/urls";
 
 interface PropTypes {

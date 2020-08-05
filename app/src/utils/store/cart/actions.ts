@@ -52,14 +52,10 @@ const fetchItemsFromCart = (cart: Cart): Record<string, CartItemType> => {
     };
   });
 
-  console.log("items", items);
-
   return items;
 };
 
 const handleSetCart = (cart: Cart, dispatch: Dispatch): void => {
-  console.log("cart", JSON.parse(JSON.stringify(cart)));
-
   dispatch(
     setCart({
       checkoutId: cart.id.toString(),

@@ -1,5 +1,5 @@
 import { getClient } from "../client";
-import { PostType } from "../../../../../types/post";
+import { PostType } from "../../../../types/post";
 
 const postFields = `
   ...,

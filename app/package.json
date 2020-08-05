@@ -6,7 +6,7 @@
   "author": "Josh McFarlin <jmcfarlin6@gatech.edu>",
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "next build && next export",
+    "start": "next start",
     "type-check": "tsc --pretty --noEmit"
   },
   "dependencies": {

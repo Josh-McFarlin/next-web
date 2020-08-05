@@ -7,7 +7,7 @@ import { selectItems, selectInfo } from "../../utils/store/cart/selectors";
 import { CartItemType } from "../../utils/store/cart/types";
 import { getSiteConfig } from "../../utils/sanity/actions/siteConfig";
 import { getShopInfo } from "../../utils/shopify/actions/shop";
-import { SiteConfigType } from "../../../../types/siteConfig";
+import { SiteConfigType } from "../../../types/siteConfig";
 import classes from "./CartScreen.module.scss";
 
 interface PropTypes {

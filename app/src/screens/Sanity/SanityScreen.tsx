@@ -4,8 +4,8 @@ import RenderSections from "../../components/cms/RenderSections";
 import Layout from "../../components/Layout";
 import { getSiteConfig } from "../../utils/sanity/actions/siteConfig";
 import { getPage } from "../../utils/sanity/actions/page";
-import { SiteConfigType } from "../../../../types/siteConfig";
-import { PageType } from "../../../../types/page";
+import { SiteConfigType } from "../../../types/siteConfig";
+import { PageType } from "../../../types/page";
 import { getAllRoutes } from "../../utils/sanity/actions/route";
 
 interface PropTypes {
