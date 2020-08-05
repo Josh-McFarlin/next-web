@@ -1,0 +1,12 @@
+export { default as BasicImage } from "./BasicImage";
+export { default as Cta } from "./Cta";
+export { default as Education } from "./Education";
+export { default as EmailForm } from "./EmailForm";
+export { default as Hero } from "./Hero";
+export { default as ImageSection } from "./ImageSection";
+export { default as ProjectsSection } from "./ProjectsSection";
+export { default as SectionHeader } from "./SectionHeader";
+export { default as SkillSet } from "./SkillSet";
+export { default as SocialLinks } from "./SocialLinks";
+export { default as TextSection } from "./TextSection";
+export { default as WorkExperience } from "./WorkExperience";

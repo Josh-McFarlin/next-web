@@ -1,0 +1,21 @@
+.root {
+  color: inherit;
+  display: block;
+  border-radius: 0;
+  border: 1px solid currentColor;
+  background-color: transparent;
+  padding: 1em 1.5em;
+  text-decoration: inherit;
+  font-weight: 600;
+  max-width: fit-content;
+  transition: transform 50ms ease-in-out;
+  transform: scale(1);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

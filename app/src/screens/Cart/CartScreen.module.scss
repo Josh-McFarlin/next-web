@@ -1,0 +1,123 @@
+@import "../../styles/Properties";
+
+.root {
+  flex-direction: row !important;
+
+  @include breakpoint-below-small {
+    flex-direction: column !important;
+  }
+
+  .itemSection {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 8px 24px;
+
+    @include breakpoint-below-small {
+      padding: 8px;
+    }
+
+    .itemHeader {
+      width: 100%;
+      border: 1px solid #3e3e3e;
+      display: flex;
+      flex-direction: row;
+      padding: 8px;
+
+      p {
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .itemTitle {
+        flex: 1;
+      }
+
+      .priceTitle {
+        margin-right: 32px;
+        text-align: right;
+      }
+
+      .quantityTitle {
+        width: 50px;
+        text-align: center;
+
+        @include breakpoint-below-small {
+          width: 30px;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .infoSection {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 8px 24px;
+
+    @include breakpoint-below-small {
+      width: 100%;
+      padding: 8px;
+    }
+
+    .pricingContainer {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #3e3e3e;
+      padding: 8px;
+
+      .title {
+        text-align: center;
+        margin-bottom: 24px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .splitText {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .titles {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+
+          p {
+            text-align: left;
+            font-size: 16px;
+            line-height: 18px;
+            font-weight: bold;
+          }
+        }
+
+        .costs {
+          display: flex;
+          flex-direction: column;
+
+          p {
+            text-align: left;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: normal;
+          }
+        }
+      }
+
+      .checkoutButton {
+        width: 100%;
+        max-width: 400px;
+        background-color: black;
+        color: white;
+        font-size: 16px;
+        font-weight: bolder;
+        padding: 16px 24px;
+        border-radius: 4px;
+        border: none;
+        margin-top: 32px;
+      }
+    }
+  }
+}

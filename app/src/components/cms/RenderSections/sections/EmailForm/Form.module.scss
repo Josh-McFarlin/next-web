@@ -1,0 +1,52 @@
+@import '../../../../../styles/Properties';
+@import '../../../../../styles/Colors';
+
+.root {
+  padding: 2rem 0;
+
+  .container {
+    width: 100%;
+    max-width: var($width-small);
+    padding: 0 1.5em;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    .heading {
+      text-align: center;
+      font-size: var($font-title3-size);
+      line-height: var($font-title3-line-height);
+      margin: 0 0 0.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin: 0.5rem 0 1.5rem;
+    }
+
+    .formButton {
+      -webkit-font-smoothing: inherit;
+      font: inherit;
+      background-color: var(--color-accent, #000);
+      color: var(--color-white, #fff);
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 25%;
+      float: right;
+      align-self: flex-end;
+      filter: brightness(100%);
+      transition: all 0.5s ease;
+
+      &:hover {
+        filter: brightness(70%);
+      }
+    }
+
+    .hiddenField {
+      display: none;
+    }
+  }
+}

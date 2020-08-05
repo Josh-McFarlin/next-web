@@ -1,0 +1,82 @@
+@import "Colors";
+
+a {
+  color: $primary-text-color;
+}
+
+div,
+nav,
+label,
+input,
+textarea,
+select,
+button {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+label,
+input,
+textarea,
+select,
+button {
+  margin: 0;
+  color: $primary-text-color;
+}
+
+h1 {
+  font-size: 22px;
+  line-height: 30px;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+h3 {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+h4 {
+  font-size: 14px;
+  line-height: 19px;
+}
+
+h5 {
+  font-size: 13px;
+  line-height: 16px;
+}
+
+h6 {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+p {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+button,
+div {
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+
+a, button {
+  cursor: pointer;
+}
+
+*:focus:not(.focus-visible) {
+  outline: none;
+}

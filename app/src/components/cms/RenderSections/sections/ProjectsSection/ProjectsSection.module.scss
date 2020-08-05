@@ -1,0 +1,26 @@
+@import '../../../../../styles/Properties';
+@import '../../../../../styles/Colors';
+
+.root {
+  padding-bottom: 2rem;
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .heading {
+      font-size: var($font-title3-size);
+      line-height: var($font-title3-line-height);
+      margin-top: 0.25em;
+    }
+
+    .projectList {
+      width: 100%;
+      max-width: 50em;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+  }
+}

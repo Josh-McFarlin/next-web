@@ -1,0 +1,38 @@
+@import '../../../styles/Properties';
+@import '../../../styles/Colors';
+
+.root {
+  color: var($primary-text-color, #333);
+  font-size: var($font-small-size);
+  line-height: var($font-small-line-height);
+  padding: 2rem 0;
+}
+
+.items {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 3rem;
+  padding: 0;
+}
+
+.item {
+  a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 1.5rem 0.5rem;
+  }
+}
+
+.text {
+  text-align: center;
+
+  p {
+    margin: 1rem 0;
+  }
+
+  a {
+    color: inherit;
+  }
+}

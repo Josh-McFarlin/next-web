@@ -1,0 +1,48 @@
+{
+  "name": "next-web-app",
+  "description": "The website.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Josh McFarlin <jmcfarlin6@gatech.edu>",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build && next export",
+    "type-check": "tsc --pretty --noEmit"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
+    "@sanity/block-content-to-react": "^2.0.7",
+    "@sanity/client": "^1.149.18",
+    "@sanity/image-url": "^0.140.19",
+    "clsx": "^1.1.1",
+    "dayjs": "^1.8.32",
+    "focus-visible": "^5.1.0",
+    "framer-motion": "^2.3.0",
+    "groq": "^1.149.16",
+    "isomorphic-unfetch": "^3.0.0",
+    "lodash": "^4.17.19",
+    "next": "^9.5.1",
+    "next-images": "^1.4.1",
+    "next-offline": "^5.0.2",
+    "next-seo": "^4.7.3",
+    "normalize.css": "^8.0.1",
+    "react": "^16.13.1",
+    "react-content-loader": "^5.1.0",
+    "react-dom": "^16.13.1",
+    "react-inlinesvg": "^2.0.1",
+    "react-ionicons": "^3.1.4",
+    "react-redux": "^7.2.1",
+    "sass": "^1.26.10",
+    "shopify-buy": "^2.11.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.158",
+    "@types/react": "^16.9.44",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "@types/shopify-buy": "^2.10.1",
+    "sitemap": "^6.2.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}

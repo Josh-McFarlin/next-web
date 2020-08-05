@@ -1,0 +1,19 @@
+@import '../../../../styles/Properties';
+@import '../../../../styles/Colors';
+
+.root {
+  outline: none;
+  border: none;
+  user-select: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: transparent;
+  pointer-events: auto;
+  margin: 0;
+  padding: 0;
+}

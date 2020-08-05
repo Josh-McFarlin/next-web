@@ -1,0 +1,8 @@
+app/dist
+app/.next
+app/node_modules
+
+types/shopify.ts
+
+studio/dist
+studio/node_modules

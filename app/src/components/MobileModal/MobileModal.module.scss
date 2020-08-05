@@ -1,0 +1,65 @@
+.root {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+
+  .paper {
+    width: 75%;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #e5e5e5;
+    border: 1px solid #cdcdcd;
+    padding: 8px;
+
+    .title {
+      margin-bottom: 16px;
+    }
+
+    .actionsContainer {
+      width: 100%;
+      flex: 1;
+      overflow-y: auto;
+
+      .actionWrapper {
+        min-height: 36px;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #282828;
+        border-radius: 2px;
+
+        &:not(:last-of-type) {
+          margin-bottom: 16px;
+        }
+
+        .action {
+          width: 100%;
+          flex: 1;
+          background: #e7e7e7;
+          color: #282828;
+          font-size: 14px;
+          font-weight: 500;
+          padding: 8px 16px;
+          border: none;
+        }
+      }
+    }
+
+    .closeButton {
+      max-width: 80%;
+      align-self: flex-end;
+      background: #2f2f2f;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 2px;
+      padding: 8px 16px;
+      margin-top: 16px;
+    }
+  }
+}

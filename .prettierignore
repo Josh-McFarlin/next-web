@@ -1,0 +1,7 @@
+app/node_modules
+studio/node_modules
+app/.next
+yarn.lock
+package-lock.json
+app/public
+app/out

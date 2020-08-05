@@ -1,0 +1,36 @@
+@import '../../../../../styles/Properties';
+@import '../../../../../styles/Colors';
+
+.root {
+  padding-bottom: 2rem;
+
+  .section {
+    width: 100%;
+    max-width: var($width-small);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+
+    .label {
+      font-size: var($font-micro-size);
+      line-height: var($font-micro-line-height);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 1em;
+    }
+
+    .heading {
+      font-size: var($font-title2-size);
+      line-height: var($font-title2-line-height);
+      margin: 0;
+    }
+
+    .label+.heading {
+      margin-top: 0.25em;
+    }
+
+    .textContainer > * {
+      margin: 0;
+    }
+  }
+}

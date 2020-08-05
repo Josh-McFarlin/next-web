@@ -1,0 +1,45 @@
+{
+  "name": "next-web",
+  "description": "A React and Next.js boilerplate for websites, blogs, and stores.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Josh McFarlin <jmcfarlin6@gatech.edu>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Josh-McFarlin/next-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Josh-McFarlin/next-web/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run type-check"
+    }
+  },
+  "lint-staged": {
+    "*.@(ts|tsx)": [
+      "npm run lint",
+      "npm run format"
+    ]
+  },
+  "scripts": {
+    "format": "prettier --write **/*.{js,ts,tsx}",
+    "lint": "eslint --fix --ext ts --ext tsx --ext js ."
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-typescript": "^3.0.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.4",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "prettier-eslint": "^11.0.0",
+    "typescript": "^3.9.7"
+  }
+}

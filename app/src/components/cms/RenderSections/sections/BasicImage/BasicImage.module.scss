@@ -1,0 +1,48 @@
+@import '../../../../../styles/Properties';
+@import '../../../../../styles/Colors';
+
+.root {
+  padding-bottom: 2rem;
+
+  .section {
+    width: 100%;
+    max-width: var($width-small);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+
+    .imageContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 1px solid black;
+        background: white;
+      }
+
+      img:not([src]) {
+        font-size: 0;
+        position: relative;
+      }
+
+      img:not([src]):after {
+        font-size: 18px;
+        border: 1px solid black;
+        box-sizing: border-box;
+        content: attr(alt);
+        z-index: -1;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0
+      }
+    }
+  }
+}

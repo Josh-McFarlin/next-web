@@ -1,0 +1,161 @@
+@import "../../../styles/Properties";
+
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  border: 1px solid #3e3e3e;
+  border-top: none;
+
+  .content {
+    display: flex;
+    flex-direction: row;
+
+    .image {
+      background: #8c8d99;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-right: 16px;
+
+      @include breakpoint-below-small {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    .infoContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      flex: 1;
+
+      .details {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        margin-right: 8px;
+        box-sizing: border-box;
+        text-decoration: none;
+
+        .title {
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 4px;
+
+          @include breakpoint-below-small {
+            font-size: 14px;
+          }
+        }
+
+        .option {
+          font-size: 16px;
+          margin-bottom: 2px;
+
+          @include breakpoint-below-small {
+            font-size: 12px;
+          }
+        }
+      }
+
+      .price {
+        margin-right: 32px;
+        font-size: 14px;
+        text-align: right;
+      }
+
+      .quantityContainer {
+        width: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-self: flex-start;
+
+        @include breakpoint-below-small {
+          width: 30px;
+        }
+
+        button {
+          font-size: 14px;
+          border: none;
+          cursor: pointer;
+
+          @include breakpoint-below-small {
+            display: none;
+          }
+        }
+
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .actionContainer {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-self: flex-end;
+
+    button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 12px;
+      color: #3e3e3e;
+    }
+
+    .editButton {
+      display: none;
+
+      @include breakpoint-below-small {
+        display: block;
+      }
+    }
+
+    .removeButton {
+      display: block;
+
+      @include breakpoint-below-small {
+        display: none;
+      }
+    }
+  }
+}
+
+.mobileQuantityContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    padding-left: 8px;
+    margin-right: 8px;
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+      font-size: 14px;
+      width: 25%;
+      border: 1px solid #757575;
+      border-radius: 2px;
+      margin: 0 8px;
+      cursor: pointer;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 21px;
+      text-align: center;
+    }
+  }
+}

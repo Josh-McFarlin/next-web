@@ -1,0 +1,33 @@
+@import '../../../../styles/Properties';
+@import '../../../../styles/Colors';
+
+.root {
+  margin: 0 0 26px;
+  cursor: pointer;
+  width: 100%;
+  padding: 5px;
+  border: 3px solid white;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  margin: 0 8px;
+  color: var(--color-white);
+}
+
+.text {
+  font-size: var($font-title3-size);
+  color: var(--color-white);
+  text-decoration: none;
+  margin: 0;
+}

@@ -1,0 +1,33 @@
+{
+  "name": "next-web-studio",
+  "description": "The Sanity CMS studio.",
+  "version": "1.0.0",
+  "main": "package.json",
+  "author": "Josh McFarlin <jmcfarlin6@gatech.edu>",
+  "license": "MIT",
+  "scripts": {
+    "start": "sanity start",
+    "test": "sanity check",
+    "build": "sanity build public -y"
+  },
+  "dependencies": {
+    "@sanity/base": "^1.149.18",
+    "@sanity/components": "^1.149.18",
+    "@sanity/core": "^1.149.18",
+    "@sanity/dashboard": "^1.149.18",
+    "@sanity/default-layout": "^1.149.18",
+    "@sanity/default-login": "^1.149.18",
+    "@sanity/desk-tool": "^1.149.18",
+    "@sanity/vision": "^1.149.16",
+    "bcp47": "^1.1.2",
+    "prop-types": "^15.6",
+    "react": "^16.2",
+    "react-dom": "^16.2",
+    "react-icons": "^3.10.0",
+    "sanity-plugin-dashboard-widget-document-list": "0.0.10",
+    "sanity-plugin-dashboard-widget-netlify": "^1.0.1"
+  },
+  "devDependencies": {
+    "@sanity/cli": "^1.149.18"
+  }
+}

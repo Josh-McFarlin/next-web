@@ -1,0 +1,96 @@
+@import '../../../../../../styles/Properties';
+@import '../../../../../../styles/Colors';
+
+.root {
+  display: flex;
+  flex-direction: row;
+
+  .image {
+    flex: 1;
+    width: 50%;
+    background: white;
+  }
+
+  .content {
+    flex: 1;
+    padding: 32px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: #000;
+    box-shadow: -10px 0 40px 50px rgb(255, 255, 255);
+
+    p a {
+      color: inherit;
+    }
+
+    .title {
+      position: relative;
+      font-weight: 600;
+      font-size: var($font-title2-size);
+      line-height: var($font-title2-line-height);
+      margin: 0;
+    }
+
+    .tagsContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: auto;
+
+      .tag {
+        padding: 0.25em;
+        text-align: center;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        font-size: var($font-small-size);
+        line-height: var($font-small-line-height);
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        background: #fff;
+        border: 1px solid var(--color-accent2);
+        color: var(--color-accent2);
+
+        &:not(:last-of-type) {
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .linkContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: auto;
+
+      .button {
+        text-decoration: none;
+        padding: 0.5em 1em;
+        text-align: center;
+        margin-top: 8px;
+        font-size: var($font-small-size);
+        line-height: var($font-small-line-height);
+        transition: all .5s ease;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        background: var(--color-accent);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: #fff;
+
+        &:hover{
+          background: var(--color-accent);
+          transform: scale(1.05);
+        }
+
+        &:not(:last-of-type) {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@import "../../../styles/Properties";
+
+.root {
+  width: 25%;
+  padding: 12px;
+  margin-bottom: 24px;
+
+  &:hover {
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.75);
+  }
+
+  @include breakpoint-below-large {
+    width: 33%;
+  }
+
+  @include breakpoint-below-medium {
+    width: 50%;
+  }
+
+  @include breakpoint-below-small {
+    width: 100%;
+  }
+
+  .product {
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    cursor: pointer;
+    position: relative;
+
+    .newIcon {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: white;
+      color: black;
+      font-size: 12px;
+      padding: 8px 16px;
+    }
+
+    .productImage {
+      width: 100%;
+      flex: 1;
+      object-fit: cover;
+      margin-bottom: 8px;
+    }
+
+    .infoContainer {
+      width: 100%;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: row;
+
+      .title {
+        flex: 1;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .price {
+        font-size: 14px;
+      }
+    }
+
+    .imageNav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @include breakpoint-below-small {
+        display: none;
+      }
+
+      .circleWrapper {
+        padding: 6px;
+
+        .circle {
+          width: 10px;
+          height: 10px;
+          background: #c8c8c8;
+          border-radius: 50%;
+          border: 1px solid #2f2f2f;
+          margin: 0;
+          padding: 0;
+          cursor: pointer;
+
+          &.selected {
+            background: #2f2f2f;
+          }
+        }
+      }
+    }
+  }
+}

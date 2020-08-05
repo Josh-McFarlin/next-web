@@ -1,0 +1,135 @@
+@import "../../../styles/Properties";
+
+.root {
+  width: 100%;
+  height: calc(100% - 65px);
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events: auto;
+
+  .paper {
+    width: 400px;
+    max-width: 80%;
+    height: 500px;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: white;
+    padding: 12px;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        text-align: center;
+        margin-bottom: 16px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .splitText {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .titles {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+
+          p {
+            text-align: left;
+            font-size: 16px;
+            line-height: 18px;
+            font-weight: bold;
+          }
+        }
+
+        .costs {
+          display: flex;
+          flex-direction: column;
+
+          p {
+            text-align: left;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+
+    .itemSection {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-top: 16px;
+
+      .itemHeader {
+        width: 100%;
+        border: 1px solid #3e3e3e;
+        display: flex;
+        flex-direction: row;
+        padding: 8px;
+
+        p {
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        .itemTitle {
+          flex: 1;
+        }
+
+        .priceTitle {
+          margin-right: 32px;
+          text-align: right;
+        }
+
+        .quantityTitle {
+          width: 50px;
+          text-align: center;
+
+          @include breakpoint-below-small {
+            width: 30px;
+            text-align: right;
+          }
+        }
+      }
+    }
+
+    .infoSection {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
+
+      .pricingContainer {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #3e3e3e;
+        padding: 8px;
+      }
+    }
+
+    .checkoutButton {
+      width: 100%;
+      background-color: black;
+      color: white;
+      font-size: 16px;
+      font-weight: bolder;
+      padding: 16px 24px;
+      border-radius: 4px;
+      border: none;
+      margin-top: 24px;
+    }
+  }
+}
