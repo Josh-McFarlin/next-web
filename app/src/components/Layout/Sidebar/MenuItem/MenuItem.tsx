@@ -1,14 +1,15 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Icon from "../../../Icon";
+import { toggleSidebarOpen } from "../../../../utils/store/navigation/navigationSlice";
 import urls from "../../../../utils/urls";
 import classes from "./MenuItem.module.scss";
 
 interface PropTypes {
   item: any;
-  toggle: () => void;
 }
 
 const variants = {
@@ -38,16 +39,21 @@ const variants = {
   },
 };
 
-const MenuItem = ({ item, toggle }: PropTypes) => {
+const MenuItem = ({ item }: PropTypes) => {
   const { slug, title, link, icon } = item;
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const isActive =
     router.pathname === urls.pages.sanityPage() &&
     router?.query?.slug === slug?.current;
 
   return (
-    <motion.div className={classes.root} variants={variants} onClick={toggle}>
+    <motion.div
+      className={classes.root}
+      variants={variants}
+      onClick={() => dispatch(toggleSidebarOpen())}
+    >
       {slug != null ? (
         <Link
           href={{

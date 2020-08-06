@@ -1,71 +1,89 @@
 import * as React from "react";
-import { motion, useCycle } from "framer-motion";
-import MenuToggle from "./MenuToggle";
+import { useDispatch, useSelector } from "react-redux";
+import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "./Navigation";
+import { selectSidebarOpen } from "../../../utils/store/navigation/selectors";
+import { setSidebarOpen } from "../../../utils/store/navigation/navigationSlice";
 import classes from "./Sidebar.module.scss";
 
 interface PropTypes {
   navItems: any[];
+  width?: number;
 }
 
-const sidebarVariants = {
-  open: {
-    background: "rgba(0, 0, 0, 0.3)",
-  },
-  closed: {
-    background: "rgba(0, 0, 0, 0)",
-    transition: {
-      delay: 0.8,
-    },
-  },
-};
-
 const backgroundVariants = {
-  open: (height = 1000) => ({
-    clipPath: `circle(${height * 2 + 200}px at calc(100% - 40px) 40px)`,
-    boxShadow: "-5px 0px 20px 5px rgba(0, 0, 0, 0.4)",
-    transition: {
-      type: "spring",
-      stiffness: 20,
-      restDelta: 2,
-    },
-  }),
-  closed: {
-    clipPath: "circle(30px at calc(100% - 40px) 40px)",
-    boxShadow: "-5px 0px 20px 5px rgba(0, 0, 0, 0)",
+  initial: {
+    opacity: 0,
+  },
+  render: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
     transition: {
       delay: 0.3,
-      type: "spring",
-      stiffness: 400,
-      damping: 40,
     },
   },
 };
 
-const height = 500;
+const sidebarVariants = {
+  initial: (width: number) => ({
+    x: -width,
+  }),
+  render: {
+    x: 0,
+    transition: {
+      damping: 0,
+      stiffness: 25,
+    },
+  },
+  exit: (width: number) => ({
+    x: -width,
+    transition: {
+      damping: 0,
+      stiffness: 25,
+    },
+  }),
+};
 
-const Sidebar = ({ navItems = [] }: PropTypes) => {
-  const [isOpen, toggleOpen] = useCycle(false, true);
-  const containerRef = React.useRef(null);
-  // const { height } = useComponentSize(containerRef);
+const Sidebar = ({ navItems = [], width = 400 }: PropTypes) => {
+  const dispatch = useDispatch();
+  const isOpen = useSelector(selectSidebarOpen);
+
+  const handleClose = (): void => {
+    dispatch(
+      setSidebarOpen({
+        sidebarOpen: false,
+      })
+    );
+  };
 
   return (
-    <motion.nav
-      className={classes.root}
-      initial={false}
-      animate={isOpen ? "open" : "closed"}
-      variants={sidebarVariants}
-      ref={containerRef}
-    >
-      <motion.div
-        className={classes.background}
-        variants={backgroundVariants}
-        custom={height}
-      >
-        <MenuToggle toggle={toggleOpen} />
-        <Navigation navItems={navItems} toggle={toggleOpen} />
-      </motion.div>
-    </motion.nav>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          key="background"
+          className={classes.root}
+          variants={backgroundVariants}
+          initial="initial"
+          animate="render"
+          exit="exit"
+          onClick={handleClose}
+        >
+          <motion.div
+            key="sidebar"
+            className={classes.sidebar}
+            variants={sidebarVariants}
+            custom={width}
+            onClick={(event: React.MouseEvent<HTMLDivElement>) =>
+              event.stopPropagation()
+            }
+          >
+            <Navigation navItems={navItems} />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

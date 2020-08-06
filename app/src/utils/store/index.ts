@@ -2,9 +2,11 @@ import * as React from "react";
 import { configureStore, combineReducers, Action } from "@reduxjs/toolkit";
 import { ThunkAction } from "redux-thunk";
 import cart from "./cart/cartSlice";
+import navigation from "./navigation/navigationSlice";
 
 const combinedReducer = combineReducers({
   cart,
+  navigation,
 });
 
 export type RootState = ReturnType<typeof combinedReducer>;

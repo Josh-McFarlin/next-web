@@ -2,6 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import SidebarToggle from "../SidebarToggle";
 import { setCartOpen } from "../../../utils/store/cart/cartSlice";
 import urls from "../../../utils/urls";
 import classes from "./Header.module.scss";
@@ -39,6 +40,7 @@ const Header = ({ name = "Missing name", navItems = [] }: PropTypes) => {
 
   return (
     <div className={classes.root}>
+      <SidebarToggle />
       <h1 className={classes.branding}>
         <Link href={urls.pages.index()}>
           <a title={name}>
@@ -46,8 +48,8 @@ const Header = ({ name = "Missing name", navItems = [] }: PropTypes) => {
           </a>
         </Link>
       </h1>
-      <nav className={classes.nav}>
-        <ul className={classes.navItems}>
+      <div className={classes.nav}>
+        <div className={classes.navItems}>
           {navItems.map((item) => {
             const { slug, title, link, _id } = item;
 
@@ -78,8 +80,8 @@ const Header = ({ name = "Missing name", navItems = [] }: PropTypes) => {
               </li>
             );
           })}
-        </ul>
-      </nav>
+        </div>
+      </div>
       <Link href={urls.pages.shop.cart()}>
         <div className={classes.cartButton} onMouseEnter={handleCartOpen}>
           Cart
