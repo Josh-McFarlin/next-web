@@ -8,7 +8,7 @@ export default {
       type: "string",
       title: "Name",
       description:
-        "The name of the form used for notifications, it is not displayed on the website.",
+        "The title of the form used for notifications, it is not displayed on the website.",
       validation: (Rule) => Rule.required(),
     },
     {

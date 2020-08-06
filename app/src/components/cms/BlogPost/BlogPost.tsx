@@ -10,17 +10,14 @@ interface PropTypes {
   morePosts?: PostType[];
 }
 
-const urlFor = (source: any) => imageBuilder.image(source);
-
 const BlogPost = ({ post }: PropTypes) => {
-  const { title = "Missing title", slug, categories, author, body = [] } = post;
+  const { title, slug, publishedAt, categories, author, body = [] } = post;
 
   return (
     <article>
       <Link
-        prefetch
         href={urls.pages.blog.post()}
-        as={urls.pages.blog.post(slug)}
+        as={urls.pages.blog.post(slug, publishedAt)}
       >
         <a>
           <h1>{title}</h1>
@@ -38,14 +35,18 @@ const BlogPost = ({ post }: PropTypes) => {
       {author.image != null && (
         <div>
           <img
-            src={urlFor(author.image).width(50).url() ?? undefined}
+            src={imageBuilder.image(author.image).width(50).url() ?? undefined}
             alt="author"
           />
         </div>
       )}
       <SimpleBlockContent
         blocks={body}
-        imageOptions={{ w: 320, h: 240, fit: "max" }}
+        imageOptions={{
+          w: 320,
+          h: 240,
+          fit: "max",
+        }}
       />
     </article>
   );

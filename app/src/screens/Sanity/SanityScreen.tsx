@@ -29,7 +29,7 @@ const SanityScreen = ({ siteConfig, page }: PropTypes) => {
     <>
       <NextSeo
         title={title}
-        titleTemplate={`${config.name} | %s`}
+        titleTemplate={`${siteConfig.config.title} | %s`}
         description={description}
         canonical={config.url && `${config.url}/${slug}`}
         openGraph={{

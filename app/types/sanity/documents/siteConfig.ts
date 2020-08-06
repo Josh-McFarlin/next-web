@@ -1,23 +1,13 @@
+import { RouteType } from "./route";
+import { LinkType } from "../objects/link";
+import { PortableTextType } from "../objects/portableText";
+
 export interface SiteConfigType {
   config: {
-    name: string;
-    mainNavigation: {
-      _id: string;
-      title: string;
-      link: string;
-      slug: {
-        current: string;
-      };
-    }[];
-    footerNavigation: {
-      _id: string;
-      title: string;
-      link: string;
-      slug: {
-        current: string;
-      };
-    }[];
-    footerText: any[];
+    title: string;
+    mainNavigation: (RouteType | LinkType)[];
+    footerNavigation: (RouteType | LinkType)[];
+    footerText?: PortableTextType[];
     logo?: {
       asset: {
         url: string;

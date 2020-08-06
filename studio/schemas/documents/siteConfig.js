@@ -71,8 +71,9 @@ export default {
       of: [
         {
           type: "reference",
-          to: [{ type: "route" }, { type: "socialLink" }],
+          to: [{ type: "route" }],
         },
+        { type: "link" },
       ],
       title: "Main navigation",
       description: "Select pages for the top menu",
@@ -87,8 +88,9 @@ export default {
       of: [
         {
           type: "reference",
-          to: [{ type: "route" }, { type: "socialLink" }],
+          to: [{ type: "route" }],
         },
+        { type: "link" },
       ],
       fieldset: "footer",
       title: "Footer navigation items",

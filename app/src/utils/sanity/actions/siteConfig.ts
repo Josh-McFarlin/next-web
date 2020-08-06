@@ -7,13 +7,19 @@ export const getSiteConfig = async (
   const config = await getClient(preview).fetch(`
     *[_id == "global-config"] {
       ...,
-      mainNavigation[] -> {
+      mainNavigation[] {
         ...,
-        "title": page->title
+        ...*[_type == "route" && _id == ^._ref] {
+          ...,
+          "title": page->title
+        }[0]
       },
-      footerNavigation[] -> {
+      footerNavigation[] {
         ...,
-        "title": page->title
+        ...*[_type == "route" && _id == ^._ref] {
+          ...,
+          "title": page->title
+        }[0]
       }
     }[0]
   `);

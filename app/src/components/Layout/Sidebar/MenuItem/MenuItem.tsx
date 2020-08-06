@@ -21,8 +21,6 @@ const MenuItem = ({ item }: PropTypes) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  console.log("item", item);
-
   const isActive =
     router.pathname === urls.pages.sanityPage() &&
     router?.query?.slug === slug?.current;

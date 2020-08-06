@@ -50,11 +50,9 @@ export default {
     },
     {
       name: "publishedAt",
-      type: "datetime",
+      type: "date",
       options: {
-        dateFormat: "YYYY-MM-DD",
-        timeFormat: "HH:mm",
-        timeStep: 15,
+        dateFormat: "MM-DD-YYYY",
         calendarTodayLabel: "Today",
       },
       title: "Published at",
@@ -70,7 +68,7 @@ export default {
   preview: {
     select: {
       title: "title",
-      author: "author.name",
+      author: "author.title",
       media: "mainImage",
     },
     prepare(selection) {

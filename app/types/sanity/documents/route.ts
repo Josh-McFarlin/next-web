@@ -2,6 +2,7 @@ import { IconType } from "../objects/icon";
 
 export interface RouteType {
   _id: string;
+  _key: string;
   title: string; // Page title
   icon?: IconType;
   slug: {

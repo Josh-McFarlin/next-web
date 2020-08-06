@@ -15,6 +15,11 @@ export default {
   title: "URL",
   fields: [
     {
+      name: "title",
+      type: "string",
+      title: "Title",
+    },
+    {
       name: "href",
       type: "url",
       title: "URL",

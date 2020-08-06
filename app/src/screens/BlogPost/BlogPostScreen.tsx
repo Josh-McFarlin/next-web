@@ -41,7 +41,11 @@ const BlogPostScreen = ({
 
 export async function getStaticProps({ params, preview = false }: any) {
   const siteConfig = await getSiteConfig();
-  const data = await getPostAndMorePosts(params.slug, preview);
+  const [date, slug] = params.slug;
+  const data =
+    date != null && slug != null
+      ? await getPostAndMorePosts(date, slug, preview)
+      : null;
 
   return {
     props: {
@@ -61,7 +65,7 @@ export async function getStaticPaths() {
   const paths =
     allPosts?.map((postSlug: string) => ({
       params: {
-        slug: postSlug,
+        slug: postSlug.split("/"),
       },
     })) || [];
 

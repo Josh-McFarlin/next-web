@@ -1,6 +1,14 @@
+import dayjs from "dayjs";
+
 const prod = process.env.NODE_ENV === "production";
 
 const fixSlug = (slug?: string): string | undefined => slug?.replace(/^\//, "");
+
+const formatDate = (date: string): string => dayjs(date).format("MM-DD-YYYY");
+const makePostSlug = (slug?: string, publishedAt?: string) =>
+  slug != null && publishedAt != null
+    ? `${formatDate(publishedAt)}/${fixSlug(slug)}`
+    : undefined;
 
 const localWithPort = process.env.PORT
   ? `http://localhost:${process.env.PORT}`
@@ -13,7 +21,8 @@ const urls = {
     sanityPage: (slug?: string) => `/${fixSlug(slug) ?? "[...slug]"}`,
     blog: {
       index: () => `/blog`,
-      post: (slug?: string) => `/blog/${fixSlug(slug) ?? "[slug]"}`,
+      post: (slug?: string, publishedAt?: string) =>
+        `/blog/${makePostSlug(slug, publishedAt) ?? "[...slug]"}`,
     },
     shop: {
       index: () => `/shop`,

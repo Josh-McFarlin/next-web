@@ -203,7 +203,7 @@ declare namespace ShopifyBuy {
     title: string;
 
     /**
-     * The product’s vendor name
+     * The product’s vendor title
      */
     vendor: string;
   }
@@ -247,7 +247,7 @@ declare namespace ShopifyBuy {
     imageVariant: Array<ImageVariant>;
 
     /**
-     * Option values associated with this variant, ex {name: "color", value: "Blue"}
+     * Option values associated with this variant, ex {title: "color", value: "Blue"}
      */
     optionValues: Array<OptionValue>;
 
@@ -281,7 +281,7 @@ declare namespace ShopifyBuy {
 
   export interface Option {
     /**
-     * name of option (ex. "Size", "Color")
+     * title of option (ex. "Size", "Color")
      */
     name: string;
 

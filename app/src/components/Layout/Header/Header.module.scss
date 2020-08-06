@@ -75,17 +75,5 @@
   .cartIcon {
     cursor: pointer;
     text-decoration: none;
-
-    @include breakpoint-above-small {
-      display: none;
-    }
-  }
-
-  .cartButton {
-    cursor: pointer;
-
-    @include breakpoint-below-small {
-      display: none;
-    }
   }
 }
