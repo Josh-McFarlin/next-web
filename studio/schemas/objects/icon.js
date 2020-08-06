@@ -1,6 +1,6 @@
 export default {
-  type: "string",
   name: "icon",
+  type: "string",
   title: "Icon",
   options: {
     list: ["Person", "Mail", "List", "Document"],

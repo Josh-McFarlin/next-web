@@ -4,8 +4,6 @@ export default {
   name: "site-config",
   type: "document",
   title: "Site Configuration",
-  // https://www.sanity.io/docs/experimental/ui-affordances-for-actions
-  // __experimental_actions: ["update", "publish"],
   fieldsets: [
     {
       name: "footer",
@@ -17,36 +15,6 @@ export default {
       name: "title",
       type: "string",
       title: "Site title",
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      title: "URL",
-      name: "url",
-      type: "url",
-      description: "The main site url. Used to create canonical url",
-    },
-    {
-      name: "frontpage",
-      type: "reference",
-      description: "Choose page to be the frontpage",
-      to: { type: "page" },
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      title: "Site language",
-      description:
-        "Should be a valid bcp47 language code like en, en-US, no or nb-NO",
-      name: "lang",
-      type: "string",
-      validation: (Rule) =>
-        Rule.custom((lang) =>
-          bcp47.parse(lang) ? true : "Please use a valid bcp47 code"
-        ),
-    },
-    {
-      name: "favicon",
-      title: "Favicon",
-      type: "image",
       validation: (Rule) => Rule.required(),
     },
     {
@@ -68,13 +36,53 @@ export default {
       ],
     },
     {
-      title: "Main navigation",
+      title: "URL",
+      name: "url",
+      type: "url",
+      description: "The main site url. Used to create canonical url",
+    },
+    {
+      name: "frontpage",
+      type: "reference",
+      description: "Choose page to be the frontpage",
+      to: { type: "page" },
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "lang",
+      type: "string",
+      title: "Site language",
+      description:
+        "Should be a valid bcp47 language code like en, en-US, no or nb-NO",
+      validation: (Rule) =>
+        Rule.custom((lang) =>
+          bcp47.parse(lang) ? true : "Please use a valid bcp47 code"
+        ),
+    },
+    {
+      name: "favicon",
+      type: "image",
+      title: "Favicon",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "mainNavigation",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "route" }, { type: "socialLink" }],
+        },
+      ],
+      title: "Main navigation",
       description: "Select pages for the top menu",
       validation: (Rule) => [
         Rule.max(5).warning("Are you sure you want more than 5 items?"),
         Rule.unique().error("You have duplicate menu items"),
       ],
+    },
+    {
+      name: "footerNavigation",
       type: "array",
       of: [
         {
@@ -82,26 +90,16 @@ export default {
           to: [{ type: "route" }, { type: "socialLink" }],
         },
       ],
-    },
-    {
+      fieldset: "footer",
       title: "Footer navigation items",
-      name: "footerNavigation",
-      type: "array",
       validation: (Rule) => [
         Rule.max(10).warning("Are you sure you want more than 10 items?"),
         Rule.unique().error("You have duplicate menu items"),
       ],
-      fieldset: "footer",
-      of: [
-        {
-          type: "reference",
-          to: [{ type: "route" }, { type: "socialLink" }],
-        },
-      ],
     },
     {
       name: "footerText",
-      type: "simplePortableText",
+      type: "portableText",
       fieldset: "footer",
     },
     {

@@ -1,36 +1,33 @@
 export default {
   name: "author",
-  title: "Author",
   type: "document",
+  title: "Author",
   fields: [
     {
       name: "name",
-      title: "Name",
       type: "string",
+      title: "Name",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "slug",
-      title: "Slug",
       type: "slug",
       options: {
         source: "name",
         maxLength: 96,
       },
+      title: "Slug",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "image",
+      type: "figure",
       title: "Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
     },
     {
       name: "bio",
-      title: "Bio",
       type: "portableText",
+      title: "Bio",
     },
   ],
   preview: {

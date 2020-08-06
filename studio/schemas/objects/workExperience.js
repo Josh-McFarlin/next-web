@@ -11,12 +11,9 @@ export default {
     {
       name: "jobs",
       type: "array",
+      of: [{ type: "job" }],
       title: "Jobs",
-      of: [
-        {
-          type: "job",
-        },
-      ],
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {

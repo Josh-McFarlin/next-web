@@ -1,6 +1,6 @@
 export default {
-  type: "object",
   name: "formField",
+  type: "object",
   title: "Form Field",
   fields: [
     {

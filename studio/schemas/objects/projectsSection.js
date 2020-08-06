@@ -1,6 +1,6 @@
 export default {
-  type: "object",
   name: "projectsSection",
+  type: "object",
   title: "Projects Section",
   fields: [
     {
@@ -11,12 +11,9 @@ export default {
     {
       name: "projects",
       type: "array",
+      of: [{ type: "project" }],
       title: "Projects",
-      of: [
-        {
-          type: "project",
-        },
-      ],
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {
@@ -25,8 +22,8 @@ export default {
     },
     prepare({ title }) {
       return {
-        title,
-        subtitle: "Projects Section",
+        title: title ?? "Projects Section",
+        subtitle: title != null ? "Projects Section" : "",
       };
     },
   },

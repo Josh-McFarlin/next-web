@@ -18,7 +18,6 @@ import embedHTML from "./objects/embedHTML";
 import internalLink from "./objects/internalLink";
 import link from "./objects/link";
 import portableText from "./objects/portableText";
-import simplePortableText from "./objects/simplePortableText";
 import job from "./objects/job";
 import project from "./objects/project";
 import school from "./objects/school";
@@ -61,7 +60,6 @@ export default createSchema({
     internalLink,
     link,
     portableText,
-    simplePortableText,
     job,
     project,
     school,

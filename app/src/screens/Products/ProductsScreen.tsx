@@ -2,7 +2,7 @@ import * as React from "react";
 import { Product, Shop } from "shopify-buy";
 import InlineProduct from "../../components/shop/InlineProduct";
 import Layout from "../../components/Layout";
-import { SiteConfigType } from "../../../types/siteConfig";
+import { SiteConfigType } from "../../../types/sanity/documents/siteConfig";
 import { getSiteConfig } from "../../utils/sanity/actions/siteConfig";
 import { getAllProducts } from "../../utils/shopify/actions/product";
 import classes from "./ProductsScreen.module.scss";

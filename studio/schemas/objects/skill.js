@@ -1,12 +1,13 @@
 export default {
-  type: "object",
   name: "skill",
+  type: "object",
   title: "Skill",
   fields: [
     {
       name: "name",
       type: "string",
       title: "Name",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "image",

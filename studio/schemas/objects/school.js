@@ -1,12 +1,13 @@
 export default {
-  type: "object",
   name: "school",
+  type: "object",
   title: "School",
   fields: [
     {
       name: "name",
       type: "string",
       title: "Name",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "location",
@@ -14,47 +15,29 @@ export default {
       title: "Location",
     },
     {
-      title: "Start Year",
       name: "startYear",
       type: "date",
       options: {
         dateFormat: "YYYY",
         calendarTodayLabel: "Today",
       },
+      title: "Start Year",
+      validation: (Rule) => Rule.required(),
     },
     {
-      title: "End Year",
       name: "endYear",
       type: "date",
       options: {
         dateFormat: "YYYY",
         calendarTodayLabel: "Today",
       },
+      title: "End Year",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "description",
-      type: "simplePortableText",
+      type: "portableText",
       title: "Description",
-    },
-    {
-      name: "completedCourses",
-      type: "array",
-      title: "Completed Courses",
-      of: [
-        {
-          type: "string",
-        },
-      ],
-    },
-    {
-      name: "currentCourses",
-      type: "array",
-      title: "Current Courses",
-      of: [
-        {
-          type: "string",
-        },
-      ],
     },
   ],
   preview: {

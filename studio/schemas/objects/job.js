@@ -1,6 +1,6 @@
 export default {
-  type: "object",
   name: "job",
+  type: "object",
   title: "Job",
   fields: [
     {
@@ -21,27 +21,27 @@ export default {
       title: "Location",
     },
     {
-      title: "Start Date",
       name: "startDate",
       type: "date",
       options: {
         dateFormat: "MMMM, YYYY",
         calendarTodayLabel: "Today",
       },
+      title: "Start Date",
       validation: (Rule) => Rule.required(),
     },
     {
-      title: "End Date",
       name: "endDate",
       type: "date",
       options: {
         dateFormat: "MMMM, YYYY",
         calendarTodayLabel: "Today",
       },
+      title: "End Date",
     },
     {
       name: "description",
-      type: "simplePortableText",
+      type: "portableText",
       title: "Description",
     },
   ],

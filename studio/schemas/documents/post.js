@@ -1,44 +1,41 @@
 export default {
   name: "post",
-  title: "Post",
   type: "document",
+  title: "Post",
   fields: [
     {
       name: "title",
-      title: "Title",
       type: "string",
+      title: "Title",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "slug",
-      title: "Slug",
       type: "slug",
       options: {
         source: "title",
         maxLength: 96,
       },
+      title: "Slug",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "author",
-      title: "Author",
       type: "reference",
-      to: {
-        type: "author",
-      },
+      to: { type: "author" },
+      title: "Author",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "mainImage",
-      title: "Main image",
       type: "image",
       options: {
         hotspot: true,
       },
+      title: "Main image",
     },
     {
       name: "categories",
-      title: "Categories",
       type: "array",
       of: [
         {
@@ -48,10 +45,11 @@ export default {
           },
         },
       ],
+      title: "Categories",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "publishedAt",
-      title: "Published at",
       type: "datetime",
       options: {
         dateFormat: "YYYY-MM-DD",
@@ -59,12 +57,13 @@ export default {
         timeStep: 15,
         calendarTodayLabel: "Today",
       },
+      title: "Published at",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "body",
-      title: "Body",
       type: "portableText",
+      title: "Body",
       validation: (Rule) => Rule.required(),
     },
   ],

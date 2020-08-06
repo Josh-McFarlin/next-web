@@ -8,7 +8,7 @@ import ImageGallery from "../../components/ImageGallery";
 import VariantSelector from "../../components/shop/VariantSelector";
 import QuantitySelector from "../../components/shop/QuantitySelector";
 import { getSiteConfig } from "../../utils/sanity/actions/siteConfig";
-import { SiteConfigType } from "../../../types/siteConfig";
+import { SiteConfigType } from "../../../types/sanity/documents/siteConfig";
 import {
   getAllProductHandles,
   getProductByHandle,

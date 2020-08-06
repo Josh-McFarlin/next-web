@@ -12,6 +12,10 @@
   left: 0;
   pointer-events: auto;
 
+  @include breakpoint-below-small {
+    display: none;
+  }
+
   .paper {
     width: 400px;
     max-width: 80%;

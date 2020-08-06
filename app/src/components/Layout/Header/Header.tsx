@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import CartIcon from "react-ionicons/lib/IosCartOutline";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import SidebarToggle from "../SidebarToggle";
@@ -61,7 +62,7 @@ const Header = ({ name = "Missing name", navItems = [] }: PropTypes) => {
             }
 
             return (
-              <li key={_id} className={classes.navItem}>
+              <div key={_id} className={classes.navItem}>
                 {slug != null ? (
                   <Link
                     href={{
@@ -77,15 +78,20 @@ const Header = ({ name = "Missing name", navItems = [] }: PropTypes) => {
                     {title}
                   </a>
                 )}
-              </li>
+              </div>
             );
           })}
         </div>
       </div>
       <Link href={urls.pages.shop.cart()}>
-        <div className={classes.cartButton} onMouseEnter={handleCartOpen}>
+        <a className={classes.cartButton} onMouseEnter={handleCartOpen}>
           Cart
-        </div>
+        </a>
+      </Link>
+      <Link href={urls.pages.shop.cart()}>
+        <a>
+          <CartIcon className={classes.cartIcon} fontSize="28px" />
+        </a>
       </Link>
     </div>
   );

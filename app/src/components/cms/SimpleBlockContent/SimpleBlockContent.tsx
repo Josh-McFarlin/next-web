@@ -1,12 +1,13 @@
 import * as React from "react";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import BlockContent from "@sanity/block-content-to-react";
 import InternalLink from "./InternalLink";
+import EmbedHTML from "./EmbedHTML";
+import Figure from "./Figure";
 import client from "../../../utils/sanity/client";
+import { PortableTextType } from "../../../../types/sanity/objects/portableText";
 
 interface PropTypes {
-  blocks: any[];
+  blocks: PortableTextType[];
   className?: string;
   imageOptions?: {
     w?: number;
@@ -33,6 +34,10 @@ const SimpleBlockContent = ({ blocks, className, ...rest }: PropTypes) => {
       serializers={{
         marks: {
           internalLink: InternalLink,
+        },
+        types: {
+          embedHTML: EmbedHTML,
+          figure: Figure,
         },
       }}
       {...rest}

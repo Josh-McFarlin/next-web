@@ -1,16 +1,9 @@
 export default {
   name: "socialLinks",
-  title: "Social Links",
   type: "array",
-  of: [
-    {
-      type: "socialLink",
-    },
-  ],
+  of: [{ type: "socialLink" }],
+  title: "Social Links",
   preview: {
-    select: {
-      title: "title",
-    },
     prepare() {
       return {
         title: "Social Links",

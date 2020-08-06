@@ -14,7 +14,7 @@
   background: white;
   box-sizing: border-box;
   margin: auto;
-  padding: 8px;
+  padding: 8px 16px;
   z-index: 6;
 
   a {
@@ -50,8 +50,9 @@
     }
 
     .navItems {
-      display: flex;
       height: 100%;
+      display: flex;
+      justify-content: flex-end;
       padding: 0;
       margin: 0;
 
@@ -71,7 +72,20 @@
     }
   }
 
+  .cartIcon {
+    cursor: pointer;
+    text-decoration: none;
+
+    @include breakpoint-above-small {
+      display: none;
+    }
+  }
+
   .cartButton {
     cursor: pointer;
+
+    @include breakpoint-below-small {
+      display: none;
+    }
   }
 }

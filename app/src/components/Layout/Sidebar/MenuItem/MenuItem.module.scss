@@ -2,32 +2,33 @@
 @import '../../../../styles/Colors';
 
 .root {
-  margin: 0 0 26px;
-  cursor: pointer;
   width: 100%;
-  padding: 5px;
-  border: 3px solid white;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
+  padding: 16px 0;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  background: none;
 
-.container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-.icon {
-  width: 30px;
-  height: 30px;
-  font-size: 30px;
-  margin: 0 8px;
-  color: var(--color-white);
-}
+    .icon {
+      width: 30px;
+      height: 30px;
+      font-size: 30px;
+      margin: 0 8px;
+      color: #212b36;
+    }
 
-.text {
-  font-size: var($font-title3-size);
-  color: var(--color-white);
-  text-decoration: none;
-  margin: 0;
+    .text {
+      font-size: $font-base-size;
+      line-height: $font-base-line-height;
+      font-weight: 500;
+      color: #212b36;
+      text-decoration: none;
+      margin: 0;
+    }
+  }
 }

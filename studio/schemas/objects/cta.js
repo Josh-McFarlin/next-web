@@ -1,7 +1,7 @@
 export default {
-  title: "Call to action",
   name: "cta",
   type: "object",
+  title: "Call to action",
   validation: (Rule) =>
     Rule.custom(
       (fields = {}) =>
@@ -15,23 +15,25 @@ export default {
   ],
   fields: [
     {
-      title: "Title",
       name: "title",
       type: "string",
+      title: "Title",
+      validation: (Rule) => Rule.required(),
     },
     {
-      title: "Internal link",
-      description: "Use this to link between pages on the website",
       name: "route",
       type: "reference",
       to: [{ type: "route" }],
       fieldset: "link",
+      title: "Internal link",
+      description: "Use this to link to a page on this website",
     },
     {
-      title: "External link",
       name: "link",
       type: "url",
       fieldset: "link",
+      title: "External link",
+      description: "Use this to link to a page on another website",
     },
   ],
   preview: {
@@ -47,8 +49,9 @@ export default {
         : link
         ? `External link: ${link}`
         : "Not set";
+
       return {
-        title: `${title}`,
+        title,
         subtitle: `${routeTitle} ${subtitleExtra}`,
       };
     },

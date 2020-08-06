@@ -1,6 +1,6 @@
 export default {
-  type: "object",
   name: "form",
+  type: "object",
   title: "Form",
   fields: [
     {
@@ -24,18 +24,18 @@ export default {
     {
       name: "fields",
       type: "array",
-      title: "Form Fields",
       of: [
         {
           type: "formField",
         },
       ],
+      title: "Form Fields",
       validation: (Rule) => Rule.required(),
     },
   ],
   preview: {
     select: {
-      title: "heading",
+      title: "name",
     },
     prepare({ title }) {
       return {

@@ -2,24 +2,24 @@ import React from "react";
 
 const LinkRender = ({ children }) => (
   <span>
-    {children}{" "}
+    {children}
     <span role="img" aria-label="Link">
-      🌍
+      {" 🌍"}
     </span>
   </span>
 );
 
 export default {
-  title: "URL",
   name: "link",
   type: "object",
+  title: "URL",
   fields: [
     {
-      title: "URL",
       name: "href",
       type: "url",
+      title: "URL",
       validation: (Rule) =>
-        Rule.uri({
+        Rule.required().uri({
           allowRelative: true,
           scheme: ["https", "http", "mailto", "tel"],
         }),

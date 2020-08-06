@@ -13,11 +13,11 @@ export default {
       name: "title",
       type: "string",
       title: "Title",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "content",
       type: "array",
-      title: "Page sections",
       of: [
         { type: "hero" },
         { type: "imageSection" },
@@ -31,6 +31,8 @@ export default {
         { type: "sectionHeader" },
         { type: "form" },
       ],
+      title: "Page sections",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "description",
@@ -47,7 +49,6 @@ export default {
       fieldset: "metadata",
     },
   ],
-
   preview: {
     select: {
       title: "title",

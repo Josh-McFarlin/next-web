@@ -1,12 +1,11 @@
 import { getClient } from "../client";
-import { PostType } from "../../../../types/post";
+import { PostType } from "../../../../types/sanity/documents/post";
 
 const postFields = `
   ...,
+  author->,
   "slug": slug.current,
   "categories": categories[]->title,
-  "authorName": author->name,
-  "authorImage": author->image,
 `;
 
 export const getPreviewPostBySlug = (slug: string): Promise<PostType> =>

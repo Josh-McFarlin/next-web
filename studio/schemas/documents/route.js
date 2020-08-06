@@ -10,12 +10,14 @@ export default {
       name: "slug",
       type: "slug",
       title: "Slug",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "page",
       type: "reference",
-      description: "Select the page that this route should point to",
       to: [{ type: "page" }],
+      description: "Select the page that this route should point to",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "icon",
@@ -26,13 +28,16 @@ export default {
       name: "includeInSitemap",
       type: "boolean",
       title: "Include page in sitemap",
-      description: "For search engines. Will be added to /sitemap.xml",
+      description:
+        "Index this website on search engines. Will be added to /sitemap.xml",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "disallowRobots",
       type: "boolean",
       title: "Disallow in robots.txt",
-      description: "Hide this route for search engines",
+      description: "Hide this route from search engines",
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {

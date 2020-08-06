@@ -1,26 +1,24 @@
 export default {
-  type: "object",
   name: "project",
+  type: "object",
   title: "Project",
   fields: [
     {
       name: "name",
       type: "string",
       title: "Name",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "tags",
       type: "array",
+      of: [{ type: "string" }],
       title: "Tags",
-      of: [
-        {
-          type: "string",
-        },
-      ],
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "description",
-      type: "simplePortableText",
+      type: "portableText",
       title: "Description",
     },
     {
@@ -31,12 +29,9 @@ export default {
     {
       name: "links",
       type: "array",
+      of: [{ type: "titledLink" }],
       title: "Links",
-      of: [
-        {
-          type: "titledLink",
-        },
-      ],
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {

@@ -1,5 +1,5 @@
 import { getClient, imageBuilder } from "../client";
-import { SiteConfigType } from "../../../../types/siteConfig";
+import { SiteConfigType } from "../../../../types/sanity/documents/siteConfig";
 
 export const getSiteConfig = async (
   preview = false

@@ -1,6 +1,6 @@
 export default {
-  type: "object",
   name: "imageSection",
+  type: "object",
   title: "Image with text",
   fields: [
     {
@@ -15,13 +15,14 @@ export default {
     },
     {
       name: "text",
-      type: "simplePortableText",
+      type: "portableText",
       title: "Text",
     },
     {
       name: "image",
       type: "figure",
       title: "Image",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "cta",

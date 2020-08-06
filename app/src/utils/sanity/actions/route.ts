@@ -15,6 +15,7 @@ export const getSitemapRoutes = async () =>
           title,
           _createdAt,
           _updatedAt
-      }}
+        }
+      }
     }
   `);

@@ -1,26 +1,24 @@
 export default {
-  type: "object",
   name: "hero",
+  type: "object",
   title: "Hero",
   fields: [
     {
       name: "heading",
       type: "string",
       title: "Heading",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "tagline",
-      type: "simplePortableText",
+      type: "portableText",
       title: "Tagline",
     },
     {
       name: "backgroundImage",
-      type: "image",
+      type: "figure",
       title: "Background image",
-      options: {
-        hotspot: true,
-        metadata: ["lqip"],
-      },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "ctas",

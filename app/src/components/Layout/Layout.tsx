@@ -3,7 +3,7 @@ import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
-import { SiteConfigType } from "../../../types/siteConfig";
+import { SiteConfigType } from "../../../types/sanity/documents/siteConfig";
 
 interface PropTypes extends React.HTMLProps<HTMLDivElement> {
   siteConfig: SiteConfigType;

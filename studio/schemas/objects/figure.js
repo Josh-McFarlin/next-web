@@ -1,34 +1,35 @@
 export default {
   name: "figure",
-  title: "Image",
   type: "image",
+  title: "Image",
   options: {
     hotspot: true,
     metadata: ["lqip"],
   },
   fields: [
     {
-      title: "Caption",
       name: "caption",
       type: "string",
       options: {
         isHighlighted: true,
       },
+      title: "Caption",
     },
     {
       name: "alt",
       type: "string",
-      title: "Alternative text",
-      description: "Important for SEO and accessiblity.",
       options: {
         isHighlighted: true,
       },
+      title: "Alternative text",
+      description: "Important for SEO and accessiblity.",
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {
     select: {
-      imageUrl: "asset.url",
       title: "caption",
+      imageUrl: "asset.url",
     },
   },
 };

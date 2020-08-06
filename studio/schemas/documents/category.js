@@ -1,18 +1,18 @@
 export default {
   name: "category",
-  title: "Category",
   type: "document",
+  title: "Category",
   fields: [
     {
       name: "title",
-      title: "Title",
       type: "string",
+      title: "Title",
       validation: (Rule) => Rule.required(),
     },
     {
       name: "description",
-      title: "Description",
       type: "text",
+      title: "Description",
       validation: (Rule) => Rule.required(),
     },
   ],

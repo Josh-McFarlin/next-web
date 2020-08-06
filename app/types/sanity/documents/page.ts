@@ -1,10 +1,13 @@
 export interface PageType {
+  _id: string;
   title: string;
+  content: any;
   description?: string;
   disallowRobots?: boolean;
-  content?: any;
   config: any;
-  slug: any;
+  slug: {
+    current: string;
+  };
   socialLinks?: string[];
   openGraphImages?: {
     url: string;
@@ -12,4 +15,7 @@ export interface PageType {
     height: number;
     alt?: string;
   }[];
+  _createdAt: string;
+  _updatedAt: string;
+  _type: string;
 }

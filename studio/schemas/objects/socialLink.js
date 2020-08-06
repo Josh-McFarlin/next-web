@@ -14,7 +14,6 @@ export default {
     {
       name: "service",
       type: "string",
-      title: "Service",
       options: {
         list: [
           {
@@ -43,11 +42,14 @@ export default {
           },
         ],
       },
+      title: "Service",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "link",
       type: "url",
       title: "Link",
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {

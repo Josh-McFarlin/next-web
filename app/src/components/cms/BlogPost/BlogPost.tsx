@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import SimpleBlockContent from "../SimpleBlockContent";
 import { imageBuilder } from "../../../utils/sanity/client";
-import { PostType } from "../../../../types/post";
+import { PostType } from "../../../../types/sanity/documents/post";
 import urls from "../../../utils/urls";
 
 interface PropTypes {
@@ -13,14 +13,7 @@ interface PropTypes {
 const urlFor = (source: any) => imageBuilder.image(source);
 
 const BlogPost = ({ post }: PropTypes) => {
-  const {
-    title = "Missing title",
-    slug,
-    categories,
-    authorName = "Missing name",
-    authorImage,
-    body = [],
-  } = post;
+  const { title = "Missing title", slug, categories, author, body = [] } = post;
 
   return (
     <article>
@@ -33,7 +26,7 @@ const BlogPost = ({ post }: PropTypes) => {
           <h1>{title}</h1>
         </a>
       </Link>
-      <span>By {authorName}</span>
+      <span>By {author.name}</span>
       {categories && (
         <ul>
           Posted in
@@ -42,10 +35,10 @@ const BlogPost = ({ post }: PropTypes) => {
           ))}
         </ul>
       )}
-      {authorImage && (
+      {author.image != null && (
         <div>
           <img
-            src={urlFor(authorImage).width(50).url() ?? undefined}
+            src={urlFor(author.image).width(50).url() ?? undefined}
             alt="author"
           />
         </div>

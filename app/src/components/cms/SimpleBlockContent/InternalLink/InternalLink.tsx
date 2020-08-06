@@ -1,10 +1,11 @@
 import * as React from "react";
 import Link from "next/link";
 import client from "../../../../utils/sanity/client";
+import { MarkDef } from "../../../../../types/sanity/objects/portableText";
 import urls from "../../../../utils/urls";
 
 interface PropTypes {
-  mark: any;
+  mark: MarkDef;
   children: React.ReactChildren;
 }
 
@@ -12,7 +13,7 @@ const InternalLink = ({ mark, children }: PropTypes) => {
   const [slug, setSlug] = React.useState<{ current: string } | null>(null);
 
   React.useEffect(() => {
-    if (mark != null && mark._ref != null) {
+    if (mark._ref != null) {
       const ref = mark._ref;
       const refQuery = `*[_id == "${ref}"][0]`;
 

@@ -1,22 +1,20 @@
 export default {
-  type: "object",
   name: "skillSet",
+  type: "object",
   title: "Skill Set",
   fields: [
     {
       name: "heading",
       type: "string",
       title: "Heading",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "skills",
       type: "array",
+      of: [{ type: "skill" }],
       title: "Skills",
-      of: [
-        {
-          type: "skill",
-        },
-      ],
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {

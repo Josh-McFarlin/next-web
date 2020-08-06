@@ -1,57 +1,35 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Icon from "../../../Icon";
 import { toggleSidebarOpen } from "../../../../utils/store/navigation/navigationSlice";
+import { RouteType } from "../../../../../types/sanity/documents/route";
 import urls from "../../../../utils/urls";
 import classes from "./MenuItem.module.scss";
 
-interface PropTypes {
-  item: any;
+interface MenuItemType extends RouteType {
+  link?: string;
 }
 
-const variants = {
-  open: {
-    x: 0,
-    opacity: 1,
-    display: "block",
-    transition: {
-      x: {
-        stiffness: 5,
-        velocity: -100,
-      },
-    },
-  },
-  closed: {
-    x: 100,
-    opacity: 0,
-    display: "none",
-    transition: {
-      x: {
-        stiffness: 5,
-      },
-      display: {
-        delay: 0.3,
-      },
-    },
-  },
-};
+interface PropTypes {
+  item: MenuItemType;
+}
 
 const MenuItem = ({ item }: PropTypes) => {
   const { slug, title, link, icon } = item;
   const router = useRouter();
   const dispatch = useDispatch();
 
+  console.log("item", item);
+
   const isActive =
     router.pathname === urls.pages.sanityPage() &&
     router?.query?.slug === slug?.current;
 
   return (
-    <motion.div
+    <button
       className={classes.root}
-      variants={variants}
       onClick={() => dispatch(toggleSidebarOpen())}
     >
       {slug != null ? (
@@ -66,7 +44,7 @@ const MenuItem = ({ item }: PropTypes) => {
             className={classes.container}
             data-is-active={isActive ? "true" : "false"}
           >
-            <Icon type={icon} className={classes.icon} />
+            {icon != null && <Icon type={icon} className={classes.icon} />}
             <p className={classes.text}>{title}</p>
           </div>
         </Link>
@@ -81,12 +59,12 @@ const MenuItem = ({ item }: PropTypes) => {
             className={classes.container}
             data-is-active={isActive ? "true" : "false"}
           >
-            <Icon type={icon} className={classes.icon} />
+            {icon != null && <Icon type={icon} className={classes.icon} />}
             <p className={classes.text}>{title}</p>
           </div>
         </a>
       )}
-    </motion.div>
+    </button>
   );
 };
 

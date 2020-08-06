@@ -1,6 +1,6 @@
 export default {
-  type: "object",
   name: "textSection",
+  type: "object",
   title: "Text",
   fields: [
     {
@@ -17,16 +17,18 @@ export default {
       name: "text",
       type: "portableText",
       title: "Text",
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {
     select: {
-      title: "heading",
+      heading: "heading",
+      label: "label",
     },
-    prepare({ title }) {
+    prepare({ heading, label }) {
       return {
-        title,
-        subtitle: "Text Section",
+        title: heading ?? label ?? "Text Section",
+        subtitle: heading != null || label != null ? "Text Section" : "",
       };
     },
   },

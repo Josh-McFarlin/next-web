@@ -1,13 +1,8 @@
 export default {
-  type: "object",
   name: "basicImage",
+  type: "object",
   title: "Basic Image",
   fields: [
-    {
-      name: "circular",
-      type: "boolean",
-      title: "Circular",
-    },
     {
       name: "image",
       type: "figure",
@@ -37,6 +32,11 @@ export default {
       type: "number",
       title: "Max Height (px)",
       validation: (Rule) => Rule.integer().min(1),
+    },
+    {
+      name: "circular",
+      type: "boolean",
+      title: "Circular",
     },
   ],
   preview: {

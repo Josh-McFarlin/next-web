@@ -1,17 +1,17 @@
 export default {
-  type: "object",
   name: "sectionHeader",
+  type: "object",
   title: "Section Heaader",
   fields: [
     {
       name: "header",
       type: "string",
       title: "Header",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "size",
       type: "string",
-      title: "Size",
       options: {
         list: [
           {
@@ -28,11 +28,12 @@ export default {
           },
         ],
       },
+      title: "Size",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "align",
       type: "string",
-      title: "Align",
       options: {
         list: [
           {
@@ -49,6 +50,8 @@ export default {
           },
         ],
       },
+      title: "Align",
+      validation: (Rule) => Rule.required(),
     },
   ],
   preview: {
