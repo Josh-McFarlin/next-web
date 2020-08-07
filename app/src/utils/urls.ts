@@ -17,8 +17,7 @@ const localWithPort = process.env.PORT
 const urls = {
   baseUrl: prod ? process.env.BASE_URL ?? localWithPort : localWithPort,
   pages: {
-    index: () => `/`,
-    sanityPage: (slug?: string) => `/${fixSlug(slug) ?? "[...slug]"}`,
+    sanityPage: (slug?: string) => `/${fixSlug(slug) ?? "[[...slug]]"}`,
     blog: {
       index: () => `/blog`,
       post: (slug?: string, publishedAt?: string) =>

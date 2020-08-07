@@ -52,13 +52,15 @@ const SanityScreen = ({ siteConfig, page }: PropTypes) => {
 
 export async function getStaticProps({ params }: any) {
   const siteConfig = await getSiteConfig();
-  const page = await getPage(params?.slug.join("/"));
+  const page = await getPage(params?.slug?.join("/"));
 
   return {
     props: {
       siteConfig,
       page,
     },
+    // At most every 10 minutes
+    revalidate: 10 * 60,
   };
 }
 

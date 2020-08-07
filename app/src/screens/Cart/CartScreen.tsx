@@ -74,6 +74,8 @@ export async function getStaticProps() {
       siteConfig,
       shopInfo,
     },
+    // At most every 10 minutes
+    revalidate: 10 * 60,
   };
 }
 
