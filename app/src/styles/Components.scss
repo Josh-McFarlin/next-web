@@ -1,8 +1,5 @@
-@import "Colors";
-
-a {
-  color: $primary-text-color;
-}
+@import "./Colors";
+@import "./Properties";
 
 div,
 nav,
@@ -21,6 +18,7 @@ h4,
 h5,
 h6,
 p,
+a,
 span,
 label,
 input,
@@ -32,38 +30,48 @@ button {
 }
 
 h1 {
-  font-size: 22px;
-  line-height: 30px;
+  font-size: $font-title1-size;
+  line-height: $font-title1-line-height;
+  font-weight: $font-weight-bold;
 }
 
 h2 {
-  font-size: 18px;
-  line-height: 24px;
+  font-size: $font-title2-size;
+  line-height: $font-title2-line-height;
+  font-weight: $font-weight-bold;
 }
 
 h3 {
-  font-size: 16px;
-  line-height: 22px;
+  font-size: $font-title3-size;
+  line-height: $font-title3-line-height;
+  font-weight: $font-weight-semi-bold;
 }
 
 h4 {
-  font-size: 14px;
-  line-height: 19px;
+  font-size: $font-title4-size;
+  line-height: $font-title4-line-height;
+  font-weight: $font-weight-semi-bold;
 }
 
 h5 {
-  font-size: 13px;
-  line-height: 16px;
+  font-size: $font-title4-size;
+  line-height: $font-title4-line-height;
+  font-weight: $font-weight-medium;
 }
 
 h6 {
-  font-size: 12px;
-  line-height: 16px;
+  font-size: $font-title4-size;
+  line-height: $font-title4-line-height;
+  font-weight: $font-weight-regular;
 }
 
-p {
-  font-size: 12px;
-  line-height: 16px;
+p,
+a,
+span {
+  font-size: $font-base-size;
+  line-height: $font-base-line-height;
+  font-weight: $font-weight-regular;
+  font-family: $font-family-quicksand;
 }
 
 button,

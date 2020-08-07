@@ -1,5 +1,5 @@
 import * as React from "react";
-import SimpleBlockContent from "../../../../SimpleBlockContent";
+import BlockContent from "../../../../BlockContent";
 import { imageBuilder } from "../../../../../../utils/sanity/client";
 import classes from "./Project.module.scss";
 
@@ -40,7 +40,7 @@ const Project = ({
       <div style={imgStyle} className={classes.image} />
       <div className={classes.content}>
         <h1 className={classes.title}>{name}</h1>
-        {description && <SimpleBlockContent blocks={description} />}
+        {description && <BlockContent blocks={description} />}
         {tags.length > 0 && (
           <div className={classes.tagsContainer}>
             {tags.map((tag) => (

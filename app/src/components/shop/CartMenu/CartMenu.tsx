@@ -1,4 +1,5 @@
 import * as React from "react";
+import clsx from "clsx";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import Portal from "../../Portal";
@@ -38,34 +39,55 @@ const CartMenu = () => {
   if (!open) return null;
 
   return (
-    <Portal className={classes.root}>
-      <div className={classes.paper} onMouseLeave={handleClose}>
-        <div className={classes.header}>
-          <p className={classes.title}>Cart</p>
-          <div className={classes.splitText}>
-            <div className={classes.titles}>
-              <p>Subtotal:</p>
-            </div>
-            <div className={classes.costs}>
-              <p>$ {info.subtotal}</p>
-            </div>
+    <Portal>
+      <div className={classes.root} onMouseOver={handleClose}>
+        <div
+          className={clsx(
+            classes.paper,
+            items.length === 0 && classes.noHeight
+          )}
+          onMouseOverCapture={(event) => event.stopPropagation()}
+        >
+          <div className={classes.header}>
+            <p className={classes.title}>Cart</p>
+            {items.length > 0 && (
+              <div className={classes.splitText}>
+                <div className={classes.titles}>
+                  <p>Subtotal:</p>
+                </div>
+                <div className={classes.costs}>
+                  <p>$ {info.subtotal}</p>
+                </div>
+              </div>
+            )}
           </div>
+          {items.length > 0 ? (
+            <>
+              <div className={classes.itemSection}>
+                <div className={classes.itemHeader}>
+                  <p className={classes.itemTitle}>Item</p>
+                  <p className={classes.priceTitle}>Price</p>
+                  <p className={classes.quantityTitle}>Qty</p>
+                </div>
+                {items.map((lineItem: CartItemType) => (
+                  <CartItem key={lineItem.id} lineItem={lineItem} />
+                ))}
+              </div>
+              <Link href={urls.pages.shop.cart()}>
+                <button
+                  className={classes.checkoutButton}
+                  onClick={handleClose}
+                >
+                  Checkout
+                </button>
+              </Link>
+            </>
+          ) : (
+            <h5 className={classes.emptyText}>
+              No items in cart, keep shopping!
+            </h5>
+          )}
         </div>
-        <div className={classes.itemSection}>
-          <div className={classes.itemHeader}>
-            <p className={classes.itemTitle}>Item</p>
-            <p className={classes.priceTitle}>Price</p>
-            <p className={classes.quantityTitle}>Qty</p>
-          </div>
-          {items.map((lineItem: CartItemType) => (
-            <CartItem key={lineItem.id} lineItem={lineItem} />
-          ))}
-        </div>
-        <Link href={urls.pages.shop.cart()}>
-          <button className={classes.checkoutButton} onClick={handleClose}>
-            Checkout
-          </button>
-        </Link>
       </div>
     </Portal>
   );

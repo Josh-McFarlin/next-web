@@ -4,26 +4,26 @@
 .root {
   .section {
     width: 100%;
-    max-width: var($width-small);
+    max-width: $width-small;
     margin: 0 auto;
     padding: 0 1.5rem;
     box-sizing: border-box;
 
     .header-sm {
-      font-size: var($font-title3-size);
-      line-height: var($font-title3-line-height);
+      font-size: $font-title3-size;
+      line-height: $font-title3-line-height;
       margin: 0.25em 0;
     }
 
     .header-md {
-      font-size: var($font-title2-size);
-      line-height: var($font-title2-line-height);
+      font-size: $font-title2-size;
+      line-height: $font-title2-line-height;
       margin: 0.25em 0;
     }
 
     .header-lg {
-      font-size: var($font-title1-size);
-      line-height: var($font-title1-line-height);
+      font-size: $font-title1-size;
+      line-height: $font-title1-line-height;
       margin: 0.25em 0;
     }
   }

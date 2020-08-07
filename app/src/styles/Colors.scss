@@ -1,51 +1,15 @@
-body.light-mode {
-  --primary-bg-color: #f2f2f2;
-  --secondary-bg-color: #8a8fa0;
-  --light-bg-color: #8c8d99;
-  --dark-bg-color: #303d51;
+$primary-bg-color: #f2f2f2;
+$secondary-bg-color: #8a8fa0;
+$light-bg-color: #8c8d99;
+$dark-bg-color: #303d51;
 
-  --primary-text-color: #2f2f2f;
-  --secondary-text-color: #4f4f4f;
-  --light-text-color: #e7e7e7;
-  --dark-text-color: #131313;
+$primary-text-color: #2f2f2f;
+$secondary-text-color: #4f4f4f;
+$light-text-color: #e7e7e7;
+$dark-text-color: #131313;
 
-  --primary-button-color: #007bff;
-  --secondary-button-color: #6c757d;
-  --success-button-color: #28a745;
-  --error-button-color: #dc3545;
-  --warning-button-color: #ffc107;
-}
-
-body.dark-mode {
-  --primary-bg-color: #262626;
-  --secondary-bg-color: #303d51;
-  --light-bg-color: #a8a8a8;
-  --dark-bg-color: #151515;
-
-  --primary-text-color: #eaeaea;
-  --secondary-text-color: #4f4f4f;
-  --light-text-color: #131313;
-  --dark-text-color: #e7e7e7;
-
-  --primary-button-color: #007bff;
-  --secondary-button-color: #6c757d;
-  --success-button-color: #28a745;
-  --error-button-color: #dc3545;
-  --warning-button-color: #ffc107;
-}
-
-$primary-bg-color: var(--primary-bg-color);
-$secondary-bg-color: var(--secondary-bg-color);
-$light-bg-color: var(--light-bg-color);
-$dark-bg-color: var(--dark-bg-color);
-
-$primary-text-color: var(--primary-text-color);
-$secondary-text-color: var(--secondary-text-color);
-$light-text-color: var(--light-text-color);
-$dark-text-color: var(--dark-text-color);
-
-$primary-button-color: var(--primary-button-color);
-$secondary-button-color: var(--secondary-button-color);
-$success-button-color: var(--success-button-color);
-$error-button-color: var(--error-button-color);
-$warning-button-color: var(--warning-button-color);
+$primary-button-color: #007bff;
+$secondary-button-color: #6c757d;
+$success-button-color: #28a745;
+$error-button-color: #dc3545;
+$warning-button-color: #ffc107;

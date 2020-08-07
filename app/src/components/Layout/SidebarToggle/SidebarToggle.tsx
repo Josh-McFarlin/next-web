@@ -5,21 +5,6 @@ import { toggleSidebarOpen } from "../../../utils/store/navigation/navigationSli
 import { selectSidebarOpen } from "../../../utils/store/navigation/selectors";
 import classes from "./SidebarToggle.module.scss";
 
-const variants = {
-  open: {
-    rotate: 90,
-    transition: {
-      duration: 0.5,
-    },
-  },
-  closed: {
-    rotate: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
 const Path = (props: any) => (
   <motion.path
     fill="transparent"
@@ -44,7 +29,6 @@ const SidebarToggle = () => {
         width="23"
         height="23"
         viewBox="0 0 23 23"
-        variants={variants}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
       >

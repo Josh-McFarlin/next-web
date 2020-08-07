@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import SimpleBlockContent from "../SimpleBlockContent";
+import BlockContent from "../BlockContent";
 import { imageBuilder } from "../../../utils/sanity/client";
 import { PostType } from "../../../../types/sanity/documents/post";
 import urls from "../../../utils/urls";
@@ -40,7 +40,7 @@ const BlogPost = ({ post }: PropTypes) => {
           />
         </div>
       )}
-      <SimpleBlockContent
+      <BlockContent
         blocks={body}
         imageOptions={{
           w: 320,

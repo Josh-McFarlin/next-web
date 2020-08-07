@@ -8,18 +8,17 @@
   cursor: pointer;
   border: none;
   background: none;
+  pointer-events: auto;
+  border-bottom: 1px solid #ddd;
 
   .container {
     display: flex;
     flex-direction: row;
     align-items: center;
+    text-decoration: none;
 
-    .icon {
-      width: 30px;
-      height: 30px;
-      font-size: 30px;
-      margin: 0 8px;
-      color: #212b36;
+    &.active p {
+      font-weight: $font-weight-bold;
     }
 
     .text {
@@ -29,6 +28,14 @@
       color: #212b36;
       text-decoration: none;
       margin: 0;
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      font-size: 30px;
+      margin: 0 8px;
+      color: #212b36;
     }
   }
 }

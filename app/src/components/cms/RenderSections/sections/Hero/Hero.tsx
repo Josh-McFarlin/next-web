@@ -1,5 +1,5 @@
 import * as React from "react";
-import SimpleBlockContent from "../../../SimpleBlockContent";
+import BlockContent from "../../../BlockContent";
 import Cta from "../Cta";
 import { imageBuilder } from "../../../../../utils/sanity/client";
 import classes from "./Hero.module.scss";
@@ -31,9 +31,9 @@ const Hero = ({
     <div className={classes.root} style={style}>
       <div className={classes.content}>
         <h1 className={classes.title}>{heading}</h1>
-        <div className={classes.tagline}>
-          {tagline.length > 0 && <SimpleBlockContent blocks={tagline} />}
-        </div>
+        {tagline.length > 0 && (
+          <BlockContent className={classes.tagline} blocks={tagline} />
+        )}
         {ctas.length > 0 && (
           <div className={classes.ctas}>
             {ctas.map((cta) => (

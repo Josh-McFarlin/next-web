@@ -1,65 +1,61 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Icon from "../../../Icon";
+import { useDispatch } from "react-redux";
 import { toggleSidebarOpen } from "../../../../utils/store/navigation/navigationSlice";
 import { RouteType } from "../../../../../types/sanity/documents/route";
+import { LinkType } from "../../../../../types/sanity/objects/link";
 import urls from "../../../../utils/urls";
 import classes from "./MenuItem.module.scss";
 
-interface MenuItemType extends RouteType {
-  link?: string;
+interface PropTypes {
+  item: RouteType | LinkType;
 }
 
-interface PropTypes {
-  item: MenuItemType;
-}
+const conditionalJoin = (slug: string | string[] | undefined): string => {
+  if (slug === undefined) return "";
+
+  return typeof slug === "string" ? slug : slug.join("/");
+};
 
 const MenuItem = ({ item }: PropTypes) => {
-  const { slug, title, link, icon } = item;
+  const { title } = item;
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const isActive =
-    router.pathname === urls.pages.sanityPage() &&
-    router?.query?.slug === slug?.current;
+  let isActive = false;
+  if ("slug" in item && item.slug != null) {
+    isActive =
+      router.pathname === urls.pages.sanityPage() &&
+      conditionalJoin(router.query.slug) === item.slug.current;
+  }
 
   return (
     <button
       className={classes.root}
       onClick={() => dispatch(toggleSidebarOpen())}
     >
-      {slug != null ? (
+      {"slug" in item && item.slug != null ? (
         <Link
           href={{
             pathname: urls.pages.sanityPage(),
-            query: { slug: slug.current },
+            query: { slug: item.slug.current },
           }}
-          as={urls.pages.sanityPage(slug.current)}
+          as={urls.pages.sanityPage(item.slug.current)}
         >
-          <div
-            className={classes.container}
-            data-is-active={isActive ? "true" : "false"}
-          >
-            {icon != null && <Icon type={icon} className={classes.icon} />}
+          <div className={clsx(classes.container, isActive && classes.active)}>
             <p className={classes.text}>{title}</p>
           </div>
         </Link>
       ) : (
         <a
-          className={classes.linkText}
-          href={link}
+          className={classes.container}
+          href={"href" in item ? item.href : undefined}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div
-            className={classes.container}
-            data-is-active={isActive ? "true" : "false"}
-          >
-            {icon != null && <Icon type={icon} className={classes.icon} />}
-            <p className={classes.text}>{title}</p>
-          </div>
+          <p className={classes.text}>{title}</p>
         </a>
       )}
     </button>

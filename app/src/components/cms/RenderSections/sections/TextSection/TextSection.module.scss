@@ -6,22 +6,22 @@
 
   .section {
     width: 100%;
-    max-width: var($width-small);
+    max-width: $width-small;
     margin: 0 auto;
     padding: 0 1.5rem;
     box-sizing: border-box;
 
     .label {
-      font-size: var($font-micro-size);
-      line-height: var($font-micro-line-height);
+      font-size: $font-micro-size;
+      line-height: $font-micro-line-height;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-top: 1em;
     }
 
     .heading {
-      font-size: var($font-title2-size);
-      line-height: var($font-title2-line-height);
+      font-size: $font-title2-size;
+      line-height: $font-title2-line-height;
       margin: 0;
     }
 

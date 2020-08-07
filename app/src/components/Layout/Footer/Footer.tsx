@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import SimpleBlockContent from "../../cms/SimpleBlockContent";
+import BlockContent from "../../cms/BlockContent";
 import { RouteType } from "../../../../types/sanity/documents/route";
 import { LinkType } from "../../../../types/sanity/objects/link";
 import { PortableTextType } from "../../../../types/sanity/objects/portableText";
@@ -64,7 +64,7 @@ const Footer = ({ navItems = [], text = [] }: PropTypes) => {
         </ul>
       </nav>
       <div className={classes.text}>
-        <SimpleBlockContent blocks={text} />
+        <BlockContent blocks={text} />
       </div>
     </div>
   );

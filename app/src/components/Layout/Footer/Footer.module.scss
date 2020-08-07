@@ -2,9 +2,9 @@
 @import '../../../styles/Colors';
 
 .root {
-  color: var($primary-text-color, #333);
-  font-size: var($font-small-size);
-  line-height: var($font-small-line-height);
+  color: $primary-text-color;
+  font-size: $font-small-size;
+  line-height: $font-small-line-height;
   padding: 2rem 0;
 }
 

@@ -1,5 +1,6 @@
-@import "Colors";
-@import "Components";
+@import "./Components";
+@import "./Properties";
+@import "./Colors";
 
 html,
 body,
@@ -13,7 +14,7 @@ body,
 }
 
 body {
-  font-family: "Poppins", serif;
+  font-family: $font-family-raleway;
 }
 
 #content {

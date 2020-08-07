@@ -1,5 +1,5 @@
 import * as React from "react";
-import SimpleBlockContent from "../../../../SimpleBlockContent";
+import BlockContent from "../../../../BlockContent";
 import classes from "./Job.module.scss";
 
 interface PropTypes {
@@ -71,7 +71,7 @@ const Job = ({
           {dateString}
           {location && ` in ${location}`}
         </div>
-        {description && <SimpleBlockContent blocks={description} />}
+        {description && <BlockContent blocks={description} />}
       </section>
     </div>
   );

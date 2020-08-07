@@ -27,6 +27,10 @@
     background-color: white;
     padding: 12px;
 
+    &.noHeight {
+      height: auto;
+    }
+
     .header {
       display: flex;
       flex-direction: column;
@@ -110,18 +114,8 @@
       }
     }
 
-    .infoSection {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      padding: 8px;
-
-      .pricingContainer {
-        display: flex;
-        flex-direction: column;
-        border: 1px solid #3e3e3e;
-        padding: 8px;
-      }
+    .emptyText {
+      text-align: center;
     }
 
     .checkoutButton {

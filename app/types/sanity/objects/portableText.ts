@@ -15,6 +15,9 @@ export interface MarkDef {
   _type: "internalLink" | "link";
   _ref?: string;
   href?: string;
+  slug?: {
+    current: string;
+  };
 }
 
 export interface TextType {

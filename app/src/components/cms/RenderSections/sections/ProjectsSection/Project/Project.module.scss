@@ -28,8 +28,8 @@
     .title {
       position: relative;
       font-weight: 600;
-      font-size: var($font-title2-size);
-      line-height: var($font-title2-line-height);
+      font-size: $font-title2-size;
+      line-height: $font-title2-line-height;
       margin: 0;
     }
 
@@ -46,8 +46,8 @@
         text-align: center;
         margin-top: 8px;
         margin-bottom: 8px;
-        font-size: var($font-small-size);
-        line-height: var($font-small-line-height);
+        font-size: $font-small-size;
+        line-height: $font-small-line-height;
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
         border-radius: 4px;
         background: #fff;
@@ -73,8 +73,8 @@
         padding: 0.5em 1em;
         text-align: center;
         margin-top: 8px;
-        font-size: var($font-small-size);
-        line-height: var($font-small-line-height);
+        font-size: $font-small-size;
+        line-height: $font-small-line-height;
         transition: all .5s ease;
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
         border-radius: 4px;

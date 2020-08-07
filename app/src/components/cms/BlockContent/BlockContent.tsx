@@ -1,5 +1,5 @@
 import * as React from "react";
-import BlockContent from "@sanity/block-content-to-react";
+import BlockContentPure from "@sanity/block-content-to-react";
 import InternalLink from "./InternalLink";
 import EmbedHTML from "./EmbedHTML";
 import Figure from "./Figure";
@@ -18,14 +18,14 @@ interface PropTypes {
 
 const { projectId, dataset } = client.config();
 
-const SimpleBlockContent = ({ blocks, className, ...rest }: PropTypes) => {
+const BlockContent = ({ blocks, className, ...rest }: PropTypes) => {
   if (!blocks) {
     // console.error('Missing blocks');
     return null;
   }
 
   return (
-    <BlockContent
+    <BlockContentPure
       blocks={blocks}
       projectId={projectId}
       dataset={dataset}
@@ -45,4 +45,4 @@ const SimpleBlockContent = ({ blocks, className, ...rest }: PropTypes) => {
   );
 };
 
-export default SimpleBlockContent;
+export default BlockContent;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import SimpleBlockContent from "../../../SimpleBlockContent";
+import BlockContent from "../../../BlockContent";
 import Cta from "../Cta";
 import { imageBuilder } from "../../../../../utils/sanity/client";
 import classes from "./ImageSection.module.scss";
@@ -39,7 +39,7 @@ const ImageSection = ({ heading, label, text, image, cta }: PropTypes) => {
             <div className={classes.captionBox}>
               <div className={classes.label}>{label}</div>
               <h2 className={classes.title}>{heading}</h2>
-              {text && <SimpleBlockContent blocks={text} />}
+              {text && <BlockContent blocks={text} />}
               {cta && cta.route && <Cta {...cta} />}
             </div>
           </div>

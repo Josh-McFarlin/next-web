@@ -8,7 +8,7 @@
   .content {
     position: relative;
     margin: 0 1.5rem;
-    max-width: var($width-medium);
+    max-width: $width-medium;
 
     .image {
       display: block;
@@ -21,13 +21,13 @@
       box-sizing: border-box;
 
       .captionBox {
-        background-color: var(--color-white);
-        border: 1px solid var(--color-black);
+        background-color: $primary-bg-color;
+        border: 1px solid $dark-text-color;
         padding: 1.5rem;
 
         .label {
-          font-size: var($font-micro-size);
-          line-height: var($font-micro-line-height);
+          font-size: $font-micro-size;
+          line-height: $font-micro-line-height;
           letter-spacing: 0.5px;
           text-transform: uppercase;
           margin-top: 1em;
@@ -38,8 +38,8 @@
         }
 
         .title {
-          font-size: var($font-title3-size);
-          line-height: var($font-title3-line-height);
+          font-size: $font-title3-size;
+          line-height: $font-title3-line-height;
         }
       }
     }

@@ -1,13 +1,15 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
-import Navigation from "./Navigation";
 import { selectSidebarOpen } from "../../../utils/store/navigation/selectors";
 import { setSidebarOpen } from "../../../utils/store/navigation/navigationSlice";
+import { RouteType } from "../../../../types/sanity/documents/route";
+import { LinkType } from "../../../../types/sanity/objects/link";
 import classes from "./Sidebar.module.scss";
+import MenuItem from "./MenuItem";
 
 interface PropTypes {
-  navItems: any[];
+  navItems: (RouteType | LinkType)[];
   width?: number;
 }
 
@@ -79,7 +81,11 @@ const Sidebar = ({ navItems = [], width = 400 }: PropTypes) => {
               event.stopPropagation()
             }
           >
-            <Navigation navItems={navItems} />
+            <div className={classes.navigation}>
+              {navItems.map((item) => (
+                <MenuItem key={item._key} item={item} />
+              ))}
+            </div>
           </motion.div>
         </motion.div>
       )}

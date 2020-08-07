@@ -6,9 +6,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  color: var(--color-white, #fff);
+  color: $light-text-color;
   background-size: cover;
-  background: var(--color-black, #000) no-repeat center center;
+  background: $dark-bg-color no-repeat center center;
   padding-bottom: 2rem;
 
   &::before {
@@ -28,7 +28,7 @@
 
   .content {
     width: 100%;
-    max-width: var($width-small);
+    max-width: $width-small;
     padding: 0 1.5em;
     box-sizing: border-box;
     z-index: 1;
@@ -41,6 +41,7 @@
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
       margin: 0;
       padding: 12.5rem 0 0;
+      color: $light-text-color;
     }
 
     .tagline {
@@ -48,6 +49,11 @@
       padding: 0;
       margin: 0.5em 0 1rem;
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+      color: $light-text-color;
+
+      * {
+        color: $light-text-color;
+      }
 
       p {
         margin: 0;

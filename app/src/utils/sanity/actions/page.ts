@@ -13,6 +13,15 @@ const frontPageQuery = `
         ctas[] {
           ...,
           route->
+        },
+        text[] {
+          ...,
+          markDefs[] {
+            ...,
+            _type == "internalLink" => {
+              "slug": *[_id == ^._ref][0].slug,
+            }
+          }
         }
       }
     }
@@ -32,6 +41,15 @@ const pageQuery = `
         ctas[] {
           ...,
           route->
+        },
+        text[] {
+          ...,
+          markDefs[] {
+            ...,
+            _type == "internalLink" => {
+              "slug": *[_id == ^._ref][0].slug,
+            }
+          }
         }
       }
     }

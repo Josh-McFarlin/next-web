@@ -1,10 +1,11 @@
 $wide-container: 60rem;
 $narrow-container: 40rem;
 
+/* Typography */
 $font-family-sans: -apple-system, BlinkMacSystemFont, sans-serif;
+$font-family-raleway: 'Raleway', sans-serif;
 $font-family-quicksand: 'Quicksand', sans-serif;
 
-/* Typography */
 $unit: 15;
 $font-micro-size: calc(10 / #{$unit} * 1rem); /* 10px */
 $font-micro-line-height: calc(12 / 10); /* 12px */
@@ -23,6 +24,12 @@ $font-title2-size: calc(24 / #{$unit} * 1rem); /* 24px */
 $font-title2-line-height: calc(33 / 24); /* 33px */
 $font-title1-size: calc(49 / #{$unit} * 1rem); /* 49px */
 $font-title1-line-height: calc(57 / 49); /* 57px */
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
 
 /* Widths */
 $width-x-small: 20em;

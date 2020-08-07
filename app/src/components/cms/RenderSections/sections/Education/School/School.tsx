@@ -1,5 +1,5 @@
 import * as React from "react";
-import SimpleBlockContent from "../../../../SimpleBlockContent";
+import BlockContent from "../../../../BlockContent";
 import classes from "./School.module.scss";
 
 interface PropTypes {
@@ -29,7 +29,7 @@ const School = ({
           endYear
         ).getUTCFullYear()} in ${location}`}
       </div>
-      {description && <SimpleBlockContent blocks={description} />}
+      {description && <BlockContent blocks={description} />}
       {completedCourses.length > 0 && (
         <div>
           <div className={classes.details}>Completed Courses</div>

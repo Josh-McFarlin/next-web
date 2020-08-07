@@ -9,6 +9,7 @@ import { LinkType } from "../../../../types/sanity/objects/link";
 import { RouteType } from "../../../../types/sanity/documents/route";
 import urls from "../../../utils/urls";
 import classes from "./Header.module.scss";
+import clsx from "clsx";
 
 interface PropTypes {
   title: string;
@@ -19,6 +20,12 @@ interface PropTypes {
   };
   navItems: (RouteType | LinkType)[];
 }
+
+const conditionalJoin = (slug: string | string[] | undefined): string => {
+  if (slug === undefined) return "";
+
+  return typeof slug === "string" ? slug : slug.join("/");
+};
 
 const noOp = () => false;
 
@@ -55,11 +62,14 @@ const Header = ({ title, navItems = [] }: PropTypes) => {
             if ("slug" in item && item.slug != null) {
               isActive =
                 router.pathname === urls.pages.sanityPage() &&
-                router.query.slug === item.slug.current;
+                conditionalJoin(router.query.slug) === item.slug.current;
             }
 
             return (
-              <div key={_key} className={classes.navItem}>
+              <div
+                key={_key}
+                className={clsx(classes.navItem, isActive && classes.active)}
+              >
                 {"slug" in item && item.slug != null ? (
                   <Link
                     href={{
@@ -68,7 +78,7 @@ const Header = ({ title, navItems = [] }: PropTypes) => {
                     }}
                     as={urls.pages.sanityPage(item.slug.current)}
                   >
-                    <a data-is-active={isActive ? "true" : "false"}>{title}</a>
+                    <a>{title}</a>
                   </Link>
                 ) : (
                   <a
@@ -82,18 +92,20 @@ const Header = ({ title, navItems = [] }: PropTypes) => {
               </div>
             );
           })}
+          <div className={classes.navItem}>
+            <Link href={urls.pages.shop.cart()}>
+              <a
+                onMouseEnter={handleCartOpen}
+                onTouchStart={noOp}
+                onTouchEnd={noOp}
+                onTouchMove={noOp}
+              >
+                <CartIcon className={classes.cartIcon} fontSize="28px" />
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
-      <Link href={urls.pages.shop.cart()}>
-        <a
-          onMouseEnter={handleCartOpen}
-          onTouchStart={noOp}
-          onTouchEnd={noOp}
-          onTouchMove={noOp}
-        >
-          <CartIcon className={classes.cartIcon} fontSize="28px" />
-        </a>
-      </Link>
     </div>
   );
 };
