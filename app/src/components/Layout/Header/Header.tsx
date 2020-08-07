@@ -1,4 +1,5 @@
 import * as React from "react";
+import clsx from "clsx";
 import Link from "next/link";
 import CartIcon from "react-ionicons/lib/IosCartOutline";
 import { useRouter } from "next/router";
@@ -7,9 +8,10 @@ import SidebarToggle from "../SidebarToggle";
 import { setCartOpen } from "../../../utils/store/cart/cartSlice";
 import { LinkType } from "../../../../types/sanity/objects/link";
 import { RouteType } from "../../../../types/sanity/documents/route";
+import { BlogConfigLayoutType } from "../../../../types/sanity/documents/blogConfig";
+import { ShopConfigLayoutType } from "../../../../types/sanity/documents/shopConfig";
 import urls from "../../../utils/urls";
 import classes from "./Header.module.scss";
-import clsx from "clsx";
 
 interface PropTypes {
   title: string;
@@ -19,6 +21,8 @@ interface PropTypes {
     };
   };
   navItems: (RouteType | LinkType)[];
+  blogConfig: BlogConfigLayoutType;
+  shopConfig: ShopConfigLayoutType;
 }
 
 const conditionalJoin = (slug: string | string[] | undefined): string => {
@@ -29,7 +33,12 @@ const conditionalJoin = (slug: string | string[] | undefined): string => {
 
 const noOp = () => false;
 
-const Header = ({ title, navItems = [] }: PropTypes) => {
+const Header = ({
+  title,
+  navItems = [],
+  shopConfig,
+  blogConfig,
+}: PropTypes) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -92,18 +101,34 @@ const Header = ({ title, navItems = [] }: PropTypes) => {
               </div>
             );
           })}
-          <div className={classes.navItem}>
-            <Link href={urls.pages.shop.cart()}>
-              <a
-                onMouseEnter={handleCartOpen}
-                onTouchStart={noOp}
-                onTouchEnd={noOp}
-                onTouchMove={noOp}
-              >
-                <CartIcon className={classes.cartIcon} fontSize="28px" />
-              </a>
-            </Link>
-          </div>
+          {blogConfig.enabled && blogConfig.display && (
+            <div className={classes.navItem}>
+              <Link href={urls.pages.blog.index()}>
+                <a>Blog</a>
+              </Link>
+            </div>
+          )}
+          {shopConfig.enabled && shopConfig.display && (
+            <div className={classes.navItem}>
+              <Link href={urls.pages.shop.index()}>
+                <a>Shop</a>
+              </Link>
+            </div>
+          )}
+          {shopConfig.enabled && shopConfig.display && shopConfig.cart && (
+            <div className={classes.navItem}>
+              <Link href={urls.pages.shop.cart()}>
+                <a
+                  onMouseEnter={handleCartOpen}
+                  onTouchStart={noOp}
+                  onTouchEnd={noOp}
+                  onTouchMove={noOp}
+                >
+                  <CartIcon className={classes.cartIcon} fontSize="28px" />
+                </a>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

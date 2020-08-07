@@ -1,16 +1,23 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
+import MenuItem from "./MenuItem";
 import { selectSidebarOpen } from "../../../utils/store/navigation/selectors";
 import { setSidebarOpen } from "../../../utils/store/navigation/navigationSlice";
 import { RouteType } from "../../../../types/sanity/documents/route";
 import { LinkType } from "../../../../types/sanity/objects/link";
+import { BlogConfigLayoutType } from "../../../../types/sanity/documents/blogConfig";
+import { ShopConfigLayoutType } from "../../../../types/sanity/documents/shopConfig";
 import classes from "./Sidebar.module.scss";
-import MenuItem from "./MenuItem";
+import Link from "next/link";
+import urls from "../../../utils/urls";
+import CartIcon from "react-ionicons/lib/IosCartOutline";
 
 interface PropTypes {
   navItems: (RouteType | LinkType)[];
   width?: number;
+  blogConfig: BlogConfigLayoutType;
+  shopConfig: ShopConfigLayoutType;
 }
 
 const backgroundVariants = {
@@ -48,7 +55,12 @@ const sidebarVariants = {
   }),
 };
 
-const Sidebar = ({ navItems = [], width = 400 }: PropTypes) => {
+const Sidebar = ({
+  navItems = [],
+  width = 400,
+  blogConfig,
+  shopConfig,
+}: PropTypes) => {
   const dispatch = useDispatch();
   const isOpen = useSelector(selectSidebarOpen);
 
@@ -85,6 +97,42 @@ const Sidebar = ({ navItems = [], width = 400 }: PropTypes) => {
               {navItems.map((item) => (
                 <MenuItem key={item._key} item={item} />
               ))}
+              {blogConfig.enabled && blogConfig.display && (
+                <MenuItem
+                  item={
+                    {
+                      title: "Blog",
+                      slug: {
+                        current: "/blog",
+                      },
+                    } as any
+                  }
+                />
+              )}
+              {shopConfig.enabled && shopConfig.display && (
+                <MenuItem
+                  item={
+                    {
+                      title: "Shop",
+                      slug: {
+                        current: "/shop",
+                      },
+                    } as any
+                  }
+                />
+              )}
+              {shopConfig.enabled && shopConfig.cart && (
+                <MenuItem
+                  item={
+                    {
+                      title: "Cart",
+                      slug: {
+                        current: "/cart",
+                      },
+                    } as any
+                  }
+                />
+              )}
             </div>
           </motion.div>
         </motion.div>

@@ -32,27 +32,29 @@ const MobileModal = ({
   if (!open) return null;
 
   return (
-    <Portal className={classes.root}>
-      <div className={classes.paper}>
-        <h1 className={classes.title}>{title}</h1>
-        <div className={classes.actionsContainer}>
-          {actions.map(({ title, action, component }) => (
-            <div key={title} className={classes.actionWrapper}>
-              {component != null ? (
-                component
-              ) : (
-                <button className={classes.action} onClick={action}>
-                  {title}
-                </button>
-              )}
-            </div>
-          ))}
+    <Portal>
+      <div className={classes.root}>
+        <div className={classes.paper}>
+          <h1 className={classes.title}>{title}</h1>
+          <div className={classes.actionsContainer}>
+            {actions.map(({ title, action, component }) => (
+              <div key={title} className={classes.actionWrapper}>
+                {component != null ? (
+                  component
+                ) : (
+                  <button className={classes.action} onClick={action}>
+                    {title}
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+          {closable && closeModal != null && (
+            <button className={classes.closeButton} onClick={closeModal}>
+              Close
+            </button>
+          )}
         </div>
-        {closable && closeModal != null && (
-          <button className={classes.closeButton} onClick={closeModal}>
-            Close
-          </button>
-        )}
       </div>
     </Portal>
   );

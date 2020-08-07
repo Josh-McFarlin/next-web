@@ -16,10 +16,16 @@ import {
 import { getVariant } from "../../utils/shopify/actions/variant";
 import { getShopInfo } from "../../utils/shopify/actions/shop";
 import { addCartItem } from "../../utils/store/cart/actions";
+import { getBlogConfig } from "../../utils/sanity/actions/blogConfig";
+import { BlogConfigType } from "../../../types/sanity/documents/blogConfig";
+import { getShopConfig } from "../../utils/sanity/actions/shopConfig";
+import { ShopConfigType } from "../../../types/sanity/documents/shopConfig";
 import classes from "./ProductScreen.module.scss";
 
 interface PropTypes {
   siteConfig: SiteConfigType;
+  blogConfig: BlogConfigType;
+  shopConfig: ShopConfigType;
   shopInfo: Shop;
   product: Product;
   productHandle: string;
@@ -35,7 +41,12 @@ const getInitialOptions = (options: Option[] = []): Record<string, string> => {
   return initialOptions;
 };
 
-const ProductScreen = ({ siteConfig, product }: PropTypes) => {
+const ProductScreen = ({
+  siteConfig,
+  blogConfig,
+  shopConfig,
+  product,
+}: PropTypes) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -78,7 +89,12 @@ const ProductScreen = ({ siteConfig, product }: PropTypes) => {
   ];
 
   return (
-    <Layout siteConfig={siteConfig} className={classes.root}>
+    <Layout
+      className={classes.root}
+      siteConfig={siteConfig}
+      blogConfig={blogConfig}
+      shopConfig={shopConfig}
+    >
       <div className={classes.mainContent}>
         {product.images.length > 0 && (
           <ImageGallery
@@ -122,12 +138,16 @@ const ProductScreen = ({ siteConfig, product }: PropTypes) => {
 
 export async function getStaticProps({ params }: any) {
   const siteConfig = await getSiteConfig();
+  const blogConfig = await getBlogConfig();
+  const shopConfig = await getShopConfig();
   const shopInfo = await getShopInfo();
   const product = await getProductByHandle(params.handle);
 
   return {
     props: {
       siteConfig,
+      blogConfig,
+      shopConfig,
       shopInfo,
       product,
       productHandle: params.handle,
@@ -137,19 +157,29 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
+type ParamPathType = {
+  params: {
+    handle: string;
+  };
+};
+
 export async function getStaticPaths() {
+  const shopConfig = await getShopConfig();
   const allProducts = await getAllProductHandles();
 
-  const paths =
-    allProducts?.map((productHandle: string) => ({
-      params: {
-        handle: productHandle,
-      },
-    })) || [];
+  let paths: ParamPathType[] = [];
+  if (shopConfig.enabled) {
+    paths =
+      allProducts?.map((productHandle: string) => ({
+        params: {
+          handle: productHandle,
+        },
+      })) || [];
+  }
 
   return {
     paths,
-    fallback: true,
+    fallback: shopConfig.enabled,
   };
 }
 

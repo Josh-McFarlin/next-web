@@ -6,10 +6,12 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // Document types
 import author from "./documents/author";
+import blog from "./documents/blog";
 import category from "./documents/category";
 import page from "./documents/page";
 import post from "./documents/post";
 import route from "./documents/route";
+import shop from "./documents/shop";
 import siteConfig from "./documents/siteConfig";
 
 // Object types
@@ -48,10 +50,12 @@ export default createSchema({
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
     author,
+    blog,
     category,
     page,
     post,
     route,
+    shop,
     siteConfig,
 
     // Object types

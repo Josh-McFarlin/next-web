@@ -4,9 +4,15 @@ import { MdDashboard, MdSettings } from "react-icons";
 // We filter document types defined in structure to prevent
 // them from being listed twice
 const hiddenDocTypes = (listItem) =>
-  !["page", "post", "route", "site-config", "socialLink"].includes(
-    listItem.getId()
-  );
+  ![
+    "page",
+    "post",
+    "route",
+    "site-config",
+    "blog-config",
+    "shop-config",
+    "socialLink",
+  ].includes(listItem.getId());
 
 export default () =>
   S.list()
@@ -20,6 +26,24 @@ export default () =>
             .id("config")
             .schemaType("site-config")
             .documentId("global-config")
+        ),
+      S.listItem()
+        .title("Blog Config")
+        .icon(MdSettings)
+        .child(
+          S.editor()
+            .id("blog-config")
+            .schemaType("blog-config")
+            .documentId("global-blog-config")
+        ),
+      S.listItem()
+        .title("Shop Config")
+        .icon(MdSettings)
+        .child(
+          S.editor()
+            .id("shop-config")
+            .schemaType("shop-config")
+            .documentId("global-shop-config")
         ),
       S.listItem()
         .title("Pages")

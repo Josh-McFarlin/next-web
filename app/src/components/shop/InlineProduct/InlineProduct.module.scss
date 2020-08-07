@@ -7,6 +7,7 @@
 
   &:hover {
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.75);
+    background-color: #ffffff;
   }
 
   @include breakpoint-below-large {
@@ -26,7 +27,7 @@
     min-height: 400px;
     display: flex;
     flex-direction: column;
-    background-color: #ffffff;
+    // background-color: #ffffff;
     cursor: pointer;
     position: relative;
 
@@ -49,7 +50,7 @@
 
     .infoContainer {
       width: 100%;
-      background-color: #ffffff;
+      // background-color: #ffffff;
       display: flex;
       flex-direction: row;
 

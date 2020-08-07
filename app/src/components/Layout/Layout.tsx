@@ -4,12 +4,22 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 import { SiteConfigType } from "../../../types/sanity/documents/siteConfig";
+import { BlogConfigLayoutType } from "../../../types/sanity/documents/blogConfig";
+import { ShopConfigLayoutType } from "../../../types/sanity/documents/shopConfig";
 
 interface PropTypes extends React.HTMLProps<HTMLDivElement> {
   siteConfig: SiteConfigType;
+  blogConfig: BlogConfigLayoutType;
+  shopConfig: ShopConfigLayoutType;
 }
 
-const Layout = ({ siteConfig, children, ...rest }: PropTypes) => {
+const Layout = ({
+  siteConfig,
+  blogConfig,
+  shopConfig,
+  children,
+  ...rest
+}: PropTypes) => {
   if (siteConfig?.config == null) {
     console.error("Missing config");
 
@@ -45,8 +55,27 @@ const Layout = ({ siteConfig, children, ...rest }: PropTypes) => {
         />
       </Head>
       <>
-        <Header title={title} logo={logo} navItems={mainNavigation} />
-        <Sidebar navItems={mainNavigation} />
+        <Header
+          title={title}
+          logo={logo}
+          navItems={mainNavigation}
+          blogConfig={blogConfig}
+          shopConfig={shopConfig}
+        />
+        <Sidebar
+          navItems={mainNavigation}
+          blogConfig={{
+            title: blogConfig.title,
+            enabled: blogConfig.enabled,
+            display: blogConfig.display,
+          }}
+          shopConfig={{
+            title: shopConfig.title,
+            enabled: shopConfig.enabled,
+            display: shopConfig.display,
+            cart: shopConfig.cart,
+          }}
+        />
         <div id="content" {...rest}>
           {children}
         </div>

@@ -7,13 +7,24 @@ import { getPage } from "../../utils/sanity/actions/page";
 import { SiteConfigType } from "../../../types/sanity/documents/siteConfig";
 import { PageType } from "../../../types/sanity/documents/page";
 import { getAllRoutes } from "../../utils/sanity/actions/route";
+import { BlogConfigType } from "../../../types/sanity/documents/blogConfig";
+import { ShopConfigType } from "../../../types/sanity/documents/shopConfig";
+import { getBlogConfig } from "../../utils/sanity/actions/blogConfig";
+import { getShopConfig } from "../../utils/sanity/actions/shopConfig";
 
 interface PropTypes {
   siteConfig: SiteConfigType;
+  blogConfig: BlogConfigType;
+  shopConfig: ShopConfigType;
   page: PageType;
 }
 
-const SanityScreen = ({ siteConfig, page }: PropTypes) => {
+const SanityScreen = ({
+  siteConfig,
+  blogConfig,
+  shopConfig,
+  page,
+}: PropTypes) => {
   const {
     title = "Missing title",
     description,
@@ -43,7 +54,11 @@ const SanityScreen = ({ siteConfig, page }: PropTypes) => {
         url={config.url}
         sameAs={socialLinks}
       />
-      <Layout siteConfig={siteConfig}>
+      <Layout
+        siteConfig={siteConfig}
+        blogConfig={blogConfig}
+        shopConfig={shopConfig}
+      >
         {content && <RenderSections sections={content} />}
       </Layout>
     </>
@@ -52,11 +67,15 @@ const SanityScreen = ({ siteConfig, page }: PropTypes) => {
 
 export async function getStaticProps({ params }: any) {
   const siteConfig = await getSiteConfig();
+  const blogConfig = await getBlogConfig();
+  const shopConfig = await getShopConfig();
   const page = await getPage(params?.slug?.join("/"));
 
   return {
     props: {
       siteConfig,
+      blogConfig,
+      shopConfig,
       page,
     },
     // At most every 10 minutes
