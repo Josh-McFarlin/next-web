@@ -3,6 +3,7 @@
 
 div,
 nav,
+article,
 label,
 input,
 textarea,
@@ -33,30 +34,35 @@ h1 {
   font-size: $font-title1-size;
   line-height: $font-title1-line-height;
   font-weight: $font-weight-bold;
+  font-family: $font-family-raleway;
 }
 
 h2 {
   font-size: $font-title2-size;
   line-height: $font-title2-line-height;
   font-weight: $font-weight-bold;
+  font-family: $font-family-raleway;
 }
 
 h3 {
   font-size: $font-title3-size;
   line-height: $font-title3-line-height;
   font-weight: $font-weight-semi-bold;
+  font-family: $font-family-raleway;
 }
 
 h4 {
   font-size: $font-title4-size;
   line-height: $font-title4-line-height;
   font-weight: $font-weight-semi-bold;
+  font-family: $font-family-raleway;
 }
 
 h5 {
   font-size: $font-title4-size;
   line-height: $font-title4-line-height;
   font-weight: $font-weight-medium;
+  font-family: $font-family-raleway;
 }
 
 h6 {

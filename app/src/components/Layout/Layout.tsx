@@ -29,6 +29,19 @@ const Layout = ({
   const { config, favicons } = siteConfig;
   const { title, mainNavigation, footerNavigation, footerText, logo } = config;
 
+  const simpleBlog = {
+    title: blogConfig.title,
+    enabled: blogConfig.enabled,
+    display: blogConfig.display,
+  };
+
+  const simpleShop = {
+    title: shopConfig.title,
+    enabled: shopConfig.enabled,
+    display: shopConfig.display,
+    cart: shopConfig.cart,
+  };
+
   return (
     <>
       <Head>
@@ -59,22 +72,13 @@ const Layout = ({
           title={title}
           logo={logo}
           navItems={mainNavigation}
-          blogConfig={blogConfig}
-          shopConfig={shopConfig}
+          blogConfig={simpleBlog}
+          shopConfig={simpleShop}
         />
         <Sidebar
           navItems={mainNavigation}
-          blogConfig={{
-            title: blogConfig.title,
-            enabled: blogConfig.enabled,
-            display: blogConfig.display,
-          }}
-          shopConfig={{
-            title: shopConfig.title,
-            enabled: shopConfig.enabled,
-            display: shopConfig.display,
-            cart: shopConfig.cart,
-          }}
+          blogConfig={simpleBlog}
+          shopConfig={simpleShop}
         />
         <div id="content" {...rest}>
           {children}

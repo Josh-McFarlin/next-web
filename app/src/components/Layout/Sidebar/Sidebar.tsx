@@ -9,9 +9,6 @@ import { LinkType } from "../../../../types/sanity/objects/link";
 import { BlogConfigLayoutType } from "../../../../types/sanity/documents/blogConfig";
 import { ShopConfigLayoutType } from "../../../../types/sanity/documents/shopConfig";
 import classes from "./Sidebar.module.scss";
-import Link from "next/link";
-import urls from "../../../utils/urls";
-import CartIcon from "react-ionicons/lib/IosCartOutline";
 
 interface PropTypes {
   navItems: (RouteType | LinkType)[];

@@ -59,7 +59,7 @@
       .navItem {
         display: flex;
         white-space: nowrap;
-        align-items: stretch;
+        align-items: center;
         padding: 0 !important;
         line-height: calc(#{$font-base-line-height} * 1.5rem);
 
@@ -72,12 +72,18 @@
           position: relative;
           padding: 0 0.75rem;
         }
+
+        .cartIconContainer {
+          justify-content: center;
+          align-items: center;
+          display: flex;
+
+          .cartIcon {
+            cursor: pointer;
+            text-decoration: none;
+          }
+        }
       }
     }
-  }
-
-  .cartIcon {
-    cursor: pointer;
-    text-decoration: none;
   }
 }

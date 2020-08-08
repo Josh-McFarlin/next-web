@@ -119,6 +119,7 @@ const Header = ({
             <div className={classes.navItem}>
               <Link href={urls.pages.shop.cart()}>
                 <a
+                  className={classes.cartIconContainer}
                   onMouseEnter={handleCartOpen}
                   onTouchStart={noOp}
                   onTouchEnd={noOp}
