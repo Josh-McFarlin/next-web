@@ -1,4 +1,5 @@
 import * as React from "react";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import { Option, Product, Shop } from "shopify-buy";
@@ -23,12 +24,12 @@ import { ShopConfigType } from "../../../types/sanity/documents/shopConfig";
 import classes from "./ProductScreen.module.scss";
 
 interface PropTypes {
+  preview: boolean;
   siteConfig: SiteConfigType;
   blogConfig: BlogConfigType;
   shopConfig: ShopConfigType;
   shopInfo: Shop;
   product: Product;
-  productHandle: string;
 }
 
 const getInitialOptions = (options: Option[] = []): Record<string, string> => {
@@ -42,6 +43,7 @@ const getInitialOptions = (options: Option[] = []): Record<string, string> => {
 };
 
 const ProductScreen = ({
+  preview,
   siteConfig,
   blogConfig,
   shopConfig,
@@ -90,6 +92,7 @@ const ProductScreen = ({
 
   return (
     <Layout
+      preview={preview}
       className={classes.root}
       siteConfig={siteConfig}
       blogConfig={blogConfig}
@@ -136,38 +139,35 @@ const ProductScreen = ({
   );
 };
 
-export async function getStaticProps({ params }: any) {
-  const siteConfig = await getSiteConfig();
-  const blogConfig = await getBlogConfig();
-  const shopConfig = await getShopConfig();
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+}) => {
+  const siteConfig = await getSiteConfig(preview);
+  const blogConfig = await getBlogConfig(preview);
+  const shopConfig = await getShopConfig(preview);
   const shopInfo = await getShopInfo();
-  const product = await getProductByHandle(params.handle);
+  const product = await getProductByHandle(params?.handle as string);
 
   return {
     props: {
+      preview,
       siteConfig,
       blogConfig,
       shopConfig,
       shopInfo,
       product,
-      productHandle: params.handle,
     },
     // At most every 10 minutes
     revalidate: 10 * 60,
   };
-}
-
-type ParamPathType = {
-  params: {
-    handle: string;
-  };
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const shopConfig = await getShopConfig();
   const allProducts = await getAllProductHandles();
 
-  let paths: ParamPathType[] = [];
+  let paths: any[] = [];
   if (shopConfig.enabled) {
     paths =
       allProducts?.map((productHandle: string) => ({
@@ -181,6 +181,6 @@ export async function getStaticPaths() {
     paths,
     fallback: shopConfig.enabled,
   };
-}
+};
 
 export default ProductScreen;

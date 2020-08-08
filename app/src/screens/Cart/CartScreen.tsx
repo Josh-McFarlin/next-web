@@ -1,4 +1,5 @@
 import * as React from "react";
+import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 import { useSelector } from "react-redux";
 import { Shop } from "shopify-buy";
@@ -16,13 +17,19 @@ import { getBlogConfig } from "../../utils/sanity/actions/blogConfig";
 import classes from "./CartScreen.module.scss";
 
 interface PropTypes {
+  preview: boolean;
   siteConfig: SiteConfigType;
   shopConfig: ShopConfigType;
   blogConfig: BlogConfigType;
   shopInfo: Shop;
 }
 
-const CartScreen = ({ siteConfig, shopConfig, blogConfig }: PropTypes) => {
+const CartScreen = ({
+  preview,
+  siteConfig,
+  shopConfig,
+  blogConfig,
+}: PropTypes) => {
   const items = useSelector(selectItems);
   const info = useSelector(selectInfo);
 
@@ -44,6 +51,7 @@ const CartScreen = ({ siteConfig, shopConfig, blogConfig }: PropTypes) => {
         }}
       />
       <Layout
+        preview={preview}
         siteConfig={siteConfig}
         blogConfig={blogConfig}
         shopConfig={shopConfig}
@@ -88,14 +96,15 @@ const CartScreen = ({ siteConfig, shopConfig, blogConfig }: PropTypes) => {
   );
 };
 
-export async function getStaticProps() {
-  const siteConfig = await getSiteConfig();
-  const shopConfig = await getShopConfig();
-  const blogConfig = await getBlogConfig();
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const siteConfig = await getSiteConfig(preview);
+  const shopConfig = await getShopConfig(preview);
+  const blogConfig = await getBlogConfig(preview);
   const shopInfo = await getShopInfo();
 
   return {
     props: {
+      preview,
       siteConfig,
       shopConfig,
       blogConfig,
@@ -104,6 +113,6 @@ export async function getStaticProps() {
     // At most every 10 minutes
     revalidate: 10 * 60,
   };
-}
+};
 
 export default CartScreen;

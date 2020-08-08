@@ -4,7 +4,7 @@
     "name": "next-web"
   },
   "api": {
-    "projectId": "tt34oyma",
+    "projectId": "a",
     "dataset": "production"
   },
   "plugins": [
@@ -16,7 +16,8 @@
     "@sanity/dashboard",
     "dashboard-widget-structure-menu",
     "dashboard-widget-document-list",
-    "dashboard-widget-netlify"
+    "dashboard-widget-netlify",
+    "@sanity/production-preview"
   ],
   "env": {
     "development": {
@@ -41,6 +42,10 @@
     {
       "name": "part:@sanity/base/new-document-structure",
       "path": "./newDocumentStructure.js"
+    },
+    {
+      "implements": "part:@sanity/production-preview/resolve-production-url",
+      "path": "./resolveProductionUrl.js"
     }
   ]
 }

@@ -1,0 +1,5 @@
+.env.development
+.env.*
+
+# Do not remove
+!.env.example

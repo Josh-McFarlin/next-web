@@ -12,8 +12,10 @@ import { ShopConfigType } from "../../../types/sanity/documents/shopConfig";
 import { getBlogConfig } from "../../utils/sanity/actions/blogConfig";
 import { BlogConfigType } from "../../../types/sanity/documents/blogConfig";
 import classes from "./ProductsScreen.module.scss";
+import { GetStaticProps } from "next";
 
 interface PropTypes {
+  preview: boolean;
   siteConfig: SiteConfigType;
   shopConfig: ShopConfigType;
   blogConfig: BlogConfigType;
@@ -22,6 +24,7 @@ interface PropTypes {
 }
 
 const ProductsScreen = ({
+  preview,
   siteConfig,
   shopConfig,
   blogConfig,
@@ -38,6 +41,7 @@ const ProductsScreen = ({
       }}
     />
     <Layout
+      preview={preview}
       siteConfig={siteConfig}
       shopConfig={shopConfig}
       blogConfig={blogConfig}
@@ -51,10 +55,10 @@ const ProductsScreen = ({
   </>
 );
 
-export async function getStaticProps() {
-  const siteConfig = await getSiteConfig();
-  const shopConfig = await getShopConfig();
-  const blogConfig = await getBlogConfig();
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const siteConfig = await getSiteConfig(preview);
+  const shopConfig = await getShopConfig(preview);
+  const blogConfig = await getBlogConfig(preview);
   const shopInfo = await getShopInfo();
 
   let products: Product[] = [];
@@ -64,6 +68,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      preview,
       siteConfig,
       shopConfig,
       blogConfig,
@@ -73,6 +78,6 @@ export async function getStaticProps() {
     // At most every 10 minutes
     revalidate: 10 * 60,
   };
-}
+};
 
 export default ProductsScreen;

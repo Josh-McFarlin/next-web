@@ -1,4 +1,5 @@
 import * as React from "react";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import { NextSeo } from "next-seo";
@@ -17,19 +18,19 @@ import { ShopConfigType } from "../../../types/sanity/documents/shopConfig";
 import { getShopConfig } from "../../utils/sanity/actions/shopConfig";
 
 interface PropTypes {
+  preview: boolean;
   siteConfig: SiteConfigType;
   blogConfig: BlogConfigType;
   shopConfig: ShopConfigType;
-  preview: boolean;
   post: PostType;
   morePosts: PostType[];
 }
 
 const BlogPostScreen = ({
+  preview,
   siteConfig,
   blogConfig,
   shopConfig,
-  preview,
   post,
   morePosts,
 }: PropTypes) => {
@@ -53,50 +54,44 @@ const BlogPostScreen = ({
         }}
       />
       <Layout
+        preview={preview}
         siteConfig={siteConfig}
         blogConfig={blogConfig}
         shopConfig={shopConfig}
       >
-        <BlogPost post={post} morePosts={morePosts} />
+        <BlogPost post={post} morePosts={morePosts} inline={false} />
       </Layout>
     </>
   );
 };
 
-export async function getStaticProps({ params, preview = false }: any) {
-  const siteConfig = await getSiteConfig();
-  const blogConfig = await getBlogConfig();
-  const shopConfig = await getShopConfig();
-  const [date, slug] = params.slug;
-  const data =
-    date != null && slug != null
-      ? await getPostAndMorePosts(date, slug, preview)
-      : null;
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+}) => {
+  const siteConfig = await getSiteConfig(preview);
+  const blogConfig = await getBlogConfig(preview);
+  const shopConfig = await getShopConfig(preview);
+  const data = await getPostAndMorePosts(params?.slug, preview);
 
   return {
     props: {
+      preview,
       siteConfig,
       blogConfig,
       shopConfig,
-      preview,
       post: data?.post || null,
       morePosts: data?.morePosts || null,
     },
     // At most every 10 minutes
     revalidate: 10 * 60,
   };
-}
-
-type ParamPathType = {
-  params: {
-    slug: string[];
-  };
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const blogConfig = await getBlogConfig();
 
-  let paths: ParamPathType[] = [];
+  let paths: any[] = [];
   if (blogConfig.enabled) {
     const allPosts = await getAllPostsSlugs();
 
@@ -112,6 +107,6 @@ export async function getStaticPaths() {
     paths,
     fallback: blogConfig.enabled,
   };
-}
+};
 
 export default BlogPostScreen;

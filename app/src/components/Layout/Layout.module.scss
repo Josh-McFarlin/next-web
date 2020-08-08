@@ -1,0 +1,20 @@
+@import "../../styles/Colors";
+@import "../../styles/Properties";
+
+.exitPreviewButton {
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  padding: 16px 24px;
+  background: $warning-button-color;
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 600;
+
+  &:not(:hover) {
+    text-decoration: none;
+    opacity: 0.5;
+  }
+}

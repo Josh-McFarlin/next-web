@@ -1,4 +1,5 @@
 import * as React from "react";
+import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 import Layout from "../../components/Layout";
 import BlogPost from "../../components/cms/BlogPost";
@@ -12,6 +13,7 @@ import { ShopConfigType } from "../../../types/sanity/documents/shopConfig";
 import { getShopConfig } from "../../utils/sanity/actions/shopConfig";
 
 interface PropTypes {
+  preview: boolean;
   siteConfig: SiteConfigType;
   blogConfig: BlogConfigType;
   shopConfig: ShopConfigType;
@@ -19,6 +21,7 @@ interface PropTypes {
 }
 
 const BlogScreen = ({
+  preview,
   siteConfig,
   blogConfig,
   shopConfig,
@@ -35,6 +38,7 @@ const BlogScreen = ({
       }}
     />
     <Layout
+      preview={preview}
       siteConfig={siteConfig}
       blogConfig={blogConfig}
       shopConfig={shopConfig}
@@ -48,18 +52,19 @@ const BlogScreen = ({
   </>
 );
 
-export async function getStaticProps() {
-  const siteConfig = await getSiteConfig();
-  const blogConfig = await getBlogConfig();
-  const shopConfig = await getShopConfig();
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const siteConfig = await getSiteConfig(preview);
+  const blogConfig = await getBlogConfig(preview);
+  const shopConfig = await getShopConfig(preview);
 
   let blogPosts: PostType[] = [];
   if (blogConfig.enabled) {
-    blogPosts = await getAllPosts();
+    blogPosts = await getAllPosts(preview);
   }
 
   return {
     props: {
+      preview,
       siteConfig,
       blogConfig,
       shopConfig,
@@ -68,6 +73,6 @@ export async function getStaticProps() {
     // At most every 10 minutes
     revalidate: 10 * 60,
   };
-}
+};
 
 export default BlogScreen;

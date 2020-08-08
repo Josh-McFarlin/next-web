@@ -56,7 +56,7 @@ const Header = ({
     <div className={classes.root}>
       <SidebarToggle />
       <h1 className={classes.branding}>
-        <Link href={urls.pages.sanityPage()} as={urls.pages.sanityPage("/")}>
+        <Link href={urls.pages.index()}>
           <a title={title}>
             <h1 className={classes.title}>{title}</h1>
           </a>

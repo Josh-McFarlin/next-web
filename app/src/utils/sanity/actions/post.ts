@@ -1,10 +1,6 @@
-import dayjs from "dayjs";
 import { getClient } from "../client";
 import { PostType } from "../../../../types/sanity/documents/post";
-
-const formatDate = (date: string): string => dayjs(date).format("MM-DD-YYYY");
-const reverseFormatDate = (date: string): string =>
-  dayjs(date, "MM-DD-YYYY").toISOString();
+import { convertSlug } from "../utils";
 
 const postFields = `
   ...,
@@ -13,62 +9,50 @@ const postFields = `
   "categories": categories[]->title,
 `;
 
-export const getPreviewPostBySlug = (
-  date: string,
-  slug: string
-): Promise<PostType> =>
-  getClient(true).fetch(
-    `*[_type == "post" && slug.current == $slug && publishedAt == $publishedAt] | order(publishedAt desc) {
-      ${postFields}
-    }[0]`,
-    {
-      slug,
-      publishedAt: reverseFormatDate(date),
-    }
-  );
-
 export const getAllPostsSlugs = (preview = false): Promise<string[]> =>
-  getClient(preview)
-    .fetch(
-      `*[_type == "post"] {
-      publishedAt,
-      "slug": slug.current
-    }`
-    )
-    .then((res) =>
-      res.map(
-        ({ publishedAt, slug }: { publishedAt: string; slug: string }) =>
-          `${formatDate(publishedAt)}/${slug}`
-      )
-    );
+  getClient(preview).fetch(`*[_type == "post"].slug.current`);
 
 export const getAllPosts = async (preview = false): Promise<PostType[]> =>
-  getClient(preview).fetch(`*[_type == "post"] | order(publishedAt desc) {
+  getClient(preview)
+    .fetch(
+      `*[_type == "post"] | order(publishedAt desc, _updatedAt desc) {
     ${postFields}
-  }`);
+  }`
+    )
+    .then((posts: PostType[]) => {
+      const uniqueSlugs = new Set<string>();
+
+      return posts.filter((post) => {
+        if (uniqueSlugs.has(post.slug)) return false;
+
+        uniqueSlugs.add(post.slug);
+        return true;
+      });
+    });
 
 export const getPostAndMorePosts = async (
-  date: string,
-  slug: string,
+  slug: string | string[] | undefined,
   preview = false
-): Promise<{ post: PostType; morePosts: PostType[] }> => {
+): Promise<{ post: PostType; morePosts: PostType[] } | null> => {
+  const fixedSlug = convertSlug(slug);
   const curClient = getClient(preview);
 
+  if (fixedSlug == null) return null;
+
   const post = await curClient.fetch(
-    `*[_type == "post" && slug.current == $slug && publishedAt == $publishedAt] | order(publishedAt desc) {
+    `*[_type == "post" && slug.current == $slug] | order(publishedAt desc, _updatedAt desc) {
         ${postFields}
       }[0]`,
     {
-      slug,
-      publishedAt: reverseFormatDate(date),
+      slug: fixedSlug,
     }
   );
 
   const morePosts = await curClient.fetch(
-    `*[_type == "post" && slug.current != $slug] | order(publishedAt desc) {
+    `*[_type == "post" && slug.current != $slug] | order(publishedAt desc, _updatedAt desc) {
         ${postFields}
       }[0...2]`,
-    { slug }
+    { slug: fixedSlug }
   );
 
   return {

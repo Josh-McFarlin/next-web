@@ -66,10 +66,7 @@ const BlogPost = ({ post, inline = true, morePosts = [] }: PropTypes) => {
         </div>
       )}
       <article className={classes.article}>
-        <Link
-          href={urls.pages.blog.post()}
-          as={urls.pages.blog.post(slug, publishedAt)}
-        >
+        <Link href={urls.pages.blog.post()} as={urls.pages.blog.post(slug)}>
           <a>
             <h1>{title}</h1>
             <p>{formatDate(publishedAt)}</p>

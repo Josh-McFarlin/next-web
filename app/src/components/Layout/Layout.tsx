@@ -6,14 +6,17 @@ import Sidebar from "./Sidebar";
 import { SiteConfigType } from "../../../types/sanity/documents/siteConfig";
 import { BlogConfigLayoutType } from "../../../types/sanity/documents/blogConfig";
 import { ShopConfigLayoutType } from "../../../types/sanity/documents/shopConfig";
+import classes from "./Layout.module.scss";
 
 interface PropTypes extends React.HTMLProps<HTMLDivElement> {
+  preview: boolean;
   siteConfig: SiteConfigType;
   blogConfig: BlogConfigLayoutType;
   shopConfig: ShopConfigLayoutType;
 }
 
 const Layout = ({
+  preview,
   siteConfig,
   blogConfig,
   shopConfig,
@@ -84,6 +87,11 @@ const Layout = ({
           {children}
         </div>
         <Footer navItems={footerNavigation} text={footerText} />
+        {preview && (
+          <a className={classes.exitPreviewButton} href="/api/exit-preview">
+            Exit Preview
+          </a>
+        )}
       </>
     </>
   );

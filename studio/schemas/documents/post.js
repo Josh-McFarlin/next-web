@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export default {
   name: "post",
   type: "document",
@@ -13,8 +15,12 @@ export default {
       name: "slug",
       type: "slug",
       options: {
-        source: "title",
-        maxLength: 96,
+        source: (doc) =>
+          `${dayjs(doc.publishedAt || undefined).format("MM-DD-YYYY")}/${
+            doc.title
+          }`,
+        slugify: (input) =>
+          input.toLowerCase().replace(/\s+/g, "-").slice(0, 120),
       },
       title: "Slug",
       validation: (Rule) => Rule.required(),
@@ -25,14 +31,6 @@ export default {
       to: { type: "author" },
       title: "Author",
       validation: (Rule) => Rule.required(),
-    },
-    {
-      name: "mainImage",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      title: "Main image",
     },
     {
       name: "categories",
@@ -57,6 +55,14 @@ export default {
       },
       title: "Published at",
       validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "mainImage",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      title: "Main image",
     },
     {
       name: "body",

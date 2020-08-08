@@ -1,4 +1,5 @@
 import * as React from "react";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { NextSeo, SocialProfileJsonLd } from "next-seo";
 import RenderSections from "../../components/cms/RenderSections";
 import Layout from "../../components/Layout";
@@ -13,6 +14,7 @@ import { getBlogConfig } from "../../utils/sanity/actions/blogConfig";
 import { getShopConfig } from "../../utils/sanity/actions/shopConfig";
 
 interface PropTypes {
+  preview: boolean;
   siteConfig: SiteConfigType;
   blogConfig: BlogConfigType;
   shopConfig: ShopConfigType;
@@ -20,6 +22,7 @@ interface PropTypes {
 }
 
 const SanityScreen = ({
+  preview,
   siteConfig,
   blogConfig,
   shopConfig,
@@ -55,6 +58,7 @@ const SanityScreen = ({
         sameAs={socialLinks}
       />
       <Layout
+        preview={preview}
         siteConfig={siteConfig}
         blogConfig={blogConfig}
         shopConfig={shopConfig}
@@ -65,14 +69,18 @@ const SanityScreen = ({
   );
 };
 
-export async function getStaticProps({ params }: any) {
-  const siteConfig = await getSiteConfig();
-  const blogConfig = await getBlogConfig();
-  const shopConfig = await getShopConfig();
-  const page = await getPage(params?.slug?.join("/"));
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+}) => {
+  const siteConfig = await getSiteConfig(preview);
+  const blogConfig = await getBlogConfig(preview);
+  const shopConfig = await getShopConfig(preview);
+  const page = await getPage(params?.slug, preview);
 
   return {
     props: {
+      preview,
       siteConfig,
       blogConfig,
       shopConfig,
@@ -81,9 +89,9 @@ export async function getStaticProps({ params }: any) {
     // At most every 10 minutes
     revalidate: 10 * 60,
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const allRoutes = await getAllRoutes();
 
   const paths =
@@ -97,6 +105,6 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-}
+};
 
 export default SanityScreen;

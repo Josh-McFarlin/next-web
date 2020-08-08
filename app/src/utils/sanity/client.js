@@ -4,7 +4,7 @@ const prod = process.env.NODE_ENV === "production";
 
 const options = {
   dataset: "production",
-  projectId: process.env.SANITY_PROJECT_ID ?? "tt34oyma",
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   useCdn: prod,
 };
 
