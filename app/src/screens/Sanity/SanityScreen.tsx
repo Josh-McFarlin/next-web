@@ -95,11 +95,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const allRoutes = await getAllRoutes();
 
   const paths =
-    allRoutes?.map((routeSlug: string) => ({
-      params: {
-        slug: routeSlug.split("/"),
-      },
-    })) || [];
+    allRoutes
+      ?.filter((routeSlug: string) => routeSlug !== "/")
+      .map((routeSlug: string) => ({
+        params: {
+          slug: routeSlug.split("/"),
+        },
+      })) || [];
 
   return {
     paths,
