@@ -48,11 +48,12 @@ const CartScreen = ({
         }}
       />
       <Layout
+        className={classes.root}
         preview={preview}
         siteConfig={siteConfig}
         blogConfig={blogConfig}
         shopConfig={shopConfig}
-        className={classes.root}
+        inShop
       >
         <div className={classes.itemSection}>
           <div className={classes.itemHeader}>

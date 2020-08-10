@@ -43,6 +43,7 @@ const ProductsScreen = ({
       siteConfig={siteConfig}
       shopConfig={shopConfig}
       blogConfig={blogConfig}
+      inShop
     >
       <div className={classes.root}>
         {products.map((product: Product) => (

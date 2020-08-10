@@ -109,6 +109,7 @@ const ProductScreen = ({
         siteConfig={siteConfig}
         blogConfig={blogConfig}
         shopConfig={shopConfig}
+        inShop
       >
         <div className={classes.mainContent}>
           {product.images.length > 0 && (

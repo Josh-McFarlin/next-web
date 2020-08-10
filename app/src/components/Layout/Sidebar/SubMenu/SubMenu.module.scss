@@ -1,0 +1,53 @@
+@import '../../../../styles/Properties';
+@import '../../../../styles/Colors';
+
+.root {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  background: white;
+  box-shadow: -5px 0px 20px 5px rgba(0, 0, 0, 0.4);
+
+  .headerContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #ddd;
+    border-bottom: 1px solid #ddd;
+
+    .arrowContainer {
+      width: 24px;
+      height: 24px;
+      outline: none;
+      border: none;
+      margin-right: 16px;
+      padding: 0;
+
+      svg {
+        width: 24px;
+        height: 24px;
+        fill: #212b36;
+      }
+    }
+
+    p {
+      width: 100%;
+      flex: 1;
+      font-size: $font-title3-size;
+      line-height: $font-title3-line-height;
+    }
+  }
+
+  .navigation {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    padding: 0 16px;
+  }
+}

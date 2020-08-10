@@ -3,16 +3,18 @@ import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
+import CollectionMenu from "../shop/CollectionMenu";
 import { SiteConfigType } from "../../../types/sanity/documents/siteConfig";
-import { BlogConfigLayoutType } from "../../../types/sanity/documents/blogConfig";
-import { ShopConfigLayoutType } from "../../../types/sanity/documents/shopConfig";
+import { BlogConfigType } from "../../../types/sanity/documents/blogConfig";
+import { ShopConfigType } from "../../../types/sanity/documents/shopConfig";
 import classes from "./Layout.module.scss";
 
 interface PropTypes extends React.HTMLProps<HTMLDivElement> {
   preview: boolean;
   siteConfig: SiteConfigType;
-  blogConfig: BlogConfigLayoutType;
-  shopConfig: ShopConfigLayoutType;
+  blogConfig: BlogConfigType;
+  shopConfig: ShopConfigType;
+  inShop?: boolean;
 }
 
 const Layout = ({
@@ -20,6 +22,7 @@ const Layout = ({
   siteConfig,
   blogConfig,
   shopConfig,
+  inShop = false,
   children,
   ...rest
 }: PropTypes) => {
@@ -31,19 +34,6 @@ const Layout = ({
 
   const { config, favicons } = siteConfig;
   const { title, mainNavigation, footerNavigation, footerText, logo } = config;
-
-  const simpleBlog = {
-    title: blogConfig.title,
-    enabled: blogConfig.enabled,
-    display: blogConfig.display,
-  };
-
-  const simpleShop = {
-    title: shopConfig.title,
-    enabled: shopConfig.enabled,
-    display: shopConfig.display,
-    cart: shopConfig.cart,
-  };
 
   return (
     <>
@@ -75,13 +65,16 @@ const Layout = ({
           title={title}
           logo={logo}
           navItems={mainNavigation}
-          blogConfig={simpleBlog}
-          shopConfig={simpleShop}
+          blogConfig={blogConfig}
+          shopConfig={shopConfig}
+          inShop={inShop}
         />
+        <CollectionMenu collections={shopConfig.mainNavigation} />
         <Sidebar
           navItems={mainNavigation}
-          blogConfig={simpleBlog}
-          shopConfig={simpleShop}
+          blogConfig={blogConfig}
+          shopConfig={shopConfig}
+          inShop={inShop}
         />
         <div id="content" {...rest}>
           {children}

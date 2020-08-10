@@ -14,9 +14,3 @@ export interface BlogConfigType {
   _updatedAt: string;
   _type: string;
 }
-
-export interface BlogConfigLayoutType {
-  title: string;
-  enabled: boolean;
-  display: boolean;
-}

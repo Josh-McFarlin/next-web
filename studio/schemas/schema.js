@@ -30,6 +30,7 @@ import figure from "./objects/figure";
 import socialLink from "./objects/socialLink";
 import socialLinks from "./objects/socialLinks";
 import formField from "./objects/formField";
+import shopCollection from "./objects/shopCollection";
 
 // Sanity page sections
 import hero from "./objects/hero";
@@ -73,6 +74,7 @@ export default createSchema({
     socialLink,
     socialLinks,
     formField,
+    shopCollection,
 
     // Sanity page sections
     hero,

@@ -1,3 +1,5 @@
+import { ShopCollectionType } from "../objects/shopCollection";
+
 export interface ShopConfigType {
   _id: string;
   title: string;
@@ -11,14 +13,8 @@ export interface ShopConfigType {
     height: number;
     alt?: string;
   }[];
+  mainNavigation: ShopCollectionType[];
   _createdAt: string;
   _updatedAt: string;
   _type: string;
-}
-
-export interface ShopConfigLayoutType {
-  title: string;
-  enabled: boolean;
-  display: boolean;
-  cart: boolean;
 }

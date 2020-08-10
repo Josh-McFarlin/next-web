@@ -1,7 +1,7 @@
 export default {
   name: "sectionHeader",
   type: "object",
-  title: "Section Heaader",
+  title: "Section Header",
   fields: [
     {
       name: "header",

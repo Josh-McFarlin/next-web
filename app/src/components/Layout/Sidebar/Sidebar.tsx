@@ -2,20 +2,24 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuItem from "./MenuItem";
+import SubMenu from "./SubMenu";
+import CollectionItem from "./CollectionItem";
 import { selectSidebarOpen } from "../../../utils/store/navigation/selectors";
 import { setSidebarOpen } from "../../../utils/store/navigation/navigationSlice";
 import { RouteType } from "../../../../types/sanity/documents/route";
 import { LinkType } from "../../../../types/sanity/objects/link";
-import { BlogConfigLayoutType } from "../../../../types/sanity/documents/blogConfig";
-import { ShopConfigLayoutType } from "../../../../types/sanity/documents/shopConfig";
+import { BlogConfigType } from "../../../../types/sanity/documents/blogConfig";
+import { ShopConfigType } from "../../../../types/sanity/documents/shopConfig";
+import { ShopCollectionType } from "../../../../types/sanity/objects/shopCollection";
 import urls from "../../../utils/urls";
 import classes from "./Sidebar.module.scss";
 
 interface PropTypes {
   navItems: (RouteType | LinkType)[];
   width?: number;
-  blogConfig: BlogConfigLayoutType;
-  shopConfig: ShopConfigLayoutType;
+  blogConfig: BlogConfigType;
+  shopConfig: ShopConfigType;
+  inShop: boolean;
 }
 
 const backgroundVariants = {
@@ -58,9 +62,18 @@ const Sidebar = ({
   width = 400,
   blogConfig,
   shopConfig,
+  inShop,
 }: PropTypes) => {
   const dispatch = useDispatch();
   const isOpen = useSelector(selectSidebarOpen);
+
+  React.useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   const handleClose = (): void => {
     dispatch(
@@ -74,23 +87,19 @@ const Sidebar = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          key="background"
+          key="root"
           className={classes.root}
-          variants={backgroundVariants}
           initial="initial"
           animate="render"
           exit="exit"
-          onClick={handleClose}
         >
           <motion.div
             key="sidebar"
             className={classes.sidebar}
             variants={sidebarVariants}
             custom={width}
-            onClick={(event: React.MouseEvent<HTMLDivElement>) =>
-              event.stopPropagation()
-            }
           >
+            <SubMenu width={width} />
             <div className={classes.navigation}>
               {navItems.map((item) => (
                 <MenuItem key={item._key} item={item} />
@@ -119,6 +128,16 @@ const Sidebar = ({
                   }
                 />
               )}
+              {shopConfig.enabled &&
+                inShop &&
+                shopConfig.mainNavigation.map(
+                  (shopCollection: ShopCollectionType) => (
+                    <CollectionItem
+                      key={shopCollection._key}
+                      item={shopCollection}
+                    />
+                  )
+                )}
               {shopConfig.enabled && shopConfig.cart && (
                 <MenuItem
                   item={
@@ -133,6 +152,15 @@ const Sidebar = ({
               )}
             </div>
           </motion.div>
+          <motion.div
+            key="background"
+            className={classes.background}
+            variants={backgroundVariants}
+            initial="initial"
+            animate="render"
+            exit="exit"
+            onClick={handleClose}
+          />
         </motion.div>
       )}
     </AnimatePresence>

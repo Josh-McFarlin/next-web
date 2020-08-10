@@ -50,6 +50,17 @@ export default {
       description: "Image for sharing previews on Facebook, Twitter etc.",
       fieldset: "metadata",
     },
+    {
+      name: "mainNavigation",
+      type: "array",
+      of: [{ type: "shopCollection" }],
+      title: "Main navigation",
+      description: "Select pages for the top menu",
+      validation: (Rule) => [
+        Rule.max(5).warning("Are you sure you want more than 5 items?"),
+        Rule.unique().error("You have duplicate menu items"),
+      ],
+    },
   ],
   preview: {
     select: {

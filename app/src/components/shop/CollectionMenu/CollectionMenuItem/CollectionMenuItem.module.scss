@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  a {
+    margin-bottom: 4px;
+
+    &:not(:hover) {
+      text-decoration: none;
+    }
+  }
+
+  .subcollections {
+    display: flex;
+    flex-direction: column;
+    padding-left: 8px;
+  }
+}

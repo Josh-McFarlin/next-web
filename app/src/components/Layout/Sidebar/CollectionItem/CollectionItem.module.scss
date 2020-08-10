@@ -1,0 +1,62 @@
+@import '../../../../styles/Properties';
+@import '../../../../styles/Colors';
+
+.root {
+  width: 100%;
+  padding: 16px 0;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  pointer-events: auto;
+  border-bottom: 1px solid #ddd;
+
+  .primaryCollection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-decoration: none;
+      flex: 1;
+      margin: 0;
+      padding: 0;
+      outline: none;
+
+      &.active p {
+        font-weight: $font-weight-bold;
+      }
+
+      .text {
+        font-size: $font-base-size;
+        line-height: $font-base-line-height;
+        font-weight: 500;
+        color: #212b36;
+        text-decoration: none;
+        margin: 0;
+      }
+    }
+
+    .arrowContainer {
+      outline: none;
+      margin-left: 16px;
+      padding: 0;
+
+      svg {
+        width: 24px;
+        height: 24px;
+        fill: #212b36;
+      }
+    }
+  }
+
+  .subcollections {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(79, 79, 79, 0.8);
+    padding-left: 8px;
+  }
+}

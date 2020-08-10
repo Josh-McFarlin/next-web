@@ -44,6 +44,7 @@ const CollectionsScreen = ({
       siteConfig={siteConfig}
       shopConfig={shopConfig}
       blogConfig={blogConfig}
+      inShop
     >
       <div className={classes.root}>
         {collections.map((collection: Collection) => (

@@ -6,10 +6,11 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import SidebarToggle from "../SidebarToggle";
 import { setCartOpen } from "../../../utils/store/cart/cartSlice";
+import { setCollectionMenuOpen } from "../../../utils/store/navigation/navigationSlice";
 import { LinkType } from "../../../../types/sanity/objects/link";
 import { RouteType } from "../../../../types/sanity/documents/route";
-import { BlogConfigLayoutType } from "../../../../types/sanity/documents/blogConfig";
-import { ShopConfigLayoutType } from "../../../../types/sanity/documents/shopConfig";
+import { BlogConfigType } from "../../../../types/sanity/documents/blogConfig";
+import { ShopConfigType } from "../../../../types/sanity/documents/shopConfig";
 import urls from "../../../utils/urls";
 import classes from "./Header.module.scss";
 
@@ -21,8 +22,9 @@ interface PropTypes {
     };
   };
   navItems: (RouteType | LinkType)[];
-  blogConfig: BlogConfigLayoutType;
-  shopConfig: ShopConfigLayoutType;
+  blogConfig: BlogConfigType;
+  shopConfig: ShopConfigType;
+  inShop: boolean;
 }
 
 const conditionalJoin = (slug: string | string[] | undefined): string => {
@@ -38,6 +40,7 @@ const Header = ({
   navItems = [],
   shopConfig,
   blogConfig,
+  inShop,
 }: PropTypes) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -47,6 +50,16 @@ const Header = ({
       dispatch(
         setCartOpen({
           isOpen: true,
+        })
+      );
+    }
+  };
+
+  const handleColMenuOpen = (): void => {
+    if (router.asPath !== urls.pages.shop.collections.all()) {
+      dispatch(
+        setCollectionMenuOpen({
+          collectionMenuOpen: true,
         })
       );
     }
@@ -134,6 +147,28 @@ const Header = ({
               </Link>
             </div>
           )}
+          {shopConfig.enabled &&
+            shopConfig.display &&
+            shopConfig.mainNavigation.length > 0 && (
+              <div
+                className={clsx(
+                  classes.navItem,
+                  isRouteActive(urls.pages.shop.collections.all()) &&
+                    classes.active
+                )}
+              >
+                <Link href={urls.pages.shop.collections.all()}>
+                  <a
+                    onMouseEnter={handleColMenuOpen}
+                    onTouchStart={noOp}
+                    onTouchEnd={noOp}
+                    onTouchMove={noOp}
+                  >
+                    Collections
+                  </a>
+                </Link>
+              </div>
+            )}
           {shopConfig.enabled && shopConfig.display && shopConfig.cart && (
             <div className={classes.navItem}>
               <Link href={urls.pages.shop.cart()}>

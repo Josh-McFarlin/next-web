@@ -60,6 +60,7 @@ const CollectionScreen = ({
         siteConfig={siteConfig}
         shopConfig={shopConfig}
         blogConfig={blogConfig}
+        inShop
       >
         <div className={classes.root}>
           <div className={classes.banner}>
