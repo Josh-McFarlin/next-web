@@ -40,13 +40,18 @@ const CartMenu = () => {
 
   return (
     <Portal>
-      <div className={classes.root} onMouseOver={handleClose}>
+      <div
+        className={classes.root}
+        onMouseOver={handleClose}
+        onFocus={handleClose}
+      >
         <div
           className={clsx(
             classes.paper,
             items.length === 0 && classes.noHeight
           )}
           onMouseOverCapture={(event) => event.stopPropagation()}
+          onFocusCapture={(event) => event.stopPropagation()}
         >
           <div className={classes.header}>
             <p className={classes.title}>Cart</p>

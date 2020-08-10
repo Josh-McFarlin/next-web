@@ -1,0 +1,49 @@
+@import "../../styles/Colors";
+@import "../../styles/Properties";
+
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .banner {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    margin-bottom: 16px;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 16px 0;
+      color: $light-text-color;
+      background: rgb(0, 0, 0);
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0) 100%);
+    }
+  }
+
+  .description {
+    width: 100%;
+    font-size: $font-large-size;
+    line-height: $font-large-line-height;
+    overflow: hidden;
+  }
+
+  .products {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}

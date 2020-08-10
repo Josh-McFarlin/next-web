@@ -2,13 +2,11 @@ import * as React from "react";
 import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 import { useSelector } from "react-redux";
-import { Shop } from "shopify-buy";
 import Layout from "../../components/Layout";
 import CartItem from "./CartItem";
 import { selectItems, selectInfo } from "../../utils/store/cart/selectors";
 import { CartItemType } from "../../utils/store/cart/types";
 import { getSiteConfig } from "../../utils/sanity/actions/siteConfig";
-import { getShopInfo } from "../../utils/shopify/actions/shop";
 import { SiteConfigType } from "../../../types/sanity/documents/siteConfig";
 import { ShopConfigType } from "../../../types/sanity/documents/shopConfig";
 import { getShopConfig } from "../../utils/sanity/actions/shopConfig";
@@ -21,7 +19,6 @@ interface PropTypes {
   siteConfig: SiteConfigType;
   shopConfig: ShopConfigType;
   blogConfig: BlogConfigType;
-  shopInfo: Shop;
 }
 
 const CartScreen = ({
@@ -100,7 +97,6 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const siteConfig = await getSiteConfig(preview);
   const shopConfig = await getShopConfig(preview);
   const blogConfig = await getBlogConfig(preview);
-  const shopInfo = await getShopInfo();
 
   return {
     props: {
@@ -108,7 +104,6 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       siteConfig,
       shopConfig,
       blogConfig,
-      shopInfo,
     },
     // At most every 10 minutes
     revalidate: 10 * 60,

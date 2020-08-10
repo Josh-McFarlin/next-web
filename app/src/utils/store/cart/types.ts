@@ -19,6 +19,8 @@ export interface CartState {
   totalTax: string | null;
   total: string | null;
   checkoutUrl: string | null;
+  actionLoading: boolean;
+  error: string | null;
 }
 
 export interface SetCartAction {
@@ -28,6 +30,10 @@ export interface SetCartAction {
   totalTax: CartState["totalTax"];
   total: CartState["total"];
   checkoutUrl: CartState["checkoutUrl"];
+}
+
+export interface SetCartErrorAction {
+  error: CartState["error"];
 }
 
 export interface SetCartOpenAction {

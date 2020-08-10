@@ -8,6 +8,7 @@ import { RouteType } from "../../../../types/sanity/documents/route";
 import { LinkType } from "../../../../types/sanity/objects/link";
 import { BlogConfigLayoutType } from "../../../../types/sanity/documents/blogConfig";
 import { ShopConfigLayoutType } from "../../../../types/sanity/documents/shopConfig";
+import urls from "../../../utils/urls";
 import classes from "./Sidebar.module.scss";
 
 interface PropTypes {
@@ -100,7 +101,7 @@ const Sidebar = ({
                     {
                       title: "Blog",
                       slug: {
-                        current: "/blog",
+                        current: urls.pages.blog.index(),
                       },
                     } as any
                   }
@@ -112,7 +113,7 @@ const Sidebar = ({
                     {
                       title: "Shop",
                       slug: {
-                        current: "/shop",
+                        current: urls.pages.shop.index(),
                       },
                     } as any
                   }
@@ -124,7 +125,7 @@ const Sidebar = ({
                     {
                       title: "Cart",
                       slug: {
-                        current: "/cart",
+                        current: urls.pages.shop.cart(),
                       },
                     } as any
                   }

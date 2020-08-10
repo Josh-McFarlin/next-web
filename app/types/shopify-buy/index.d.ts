@@ -53,7 +53,10 @@ declare namespace ShopifyBuy {
 
   export interface CollectionResource {
     fetch(id: string): Promise<Product[]>;
-    fetchWithProducts(id: string): Promise<any[]>; // TODO fix to be a type: Docs: Fetches a single collection by ID on the shop, not including products.
+    fetchWithProducts(
+      id: string,
+      options?: { productsFirst?: number }
+    ): Promise<any[]>; // TODO fix to be a type: Docs: Fetches a single collection by ID on the shop, not including products.
     fetchAll(pageSizeopt?: number): Promise<any[]>; // TODO fix to be a type: Docs: Fetches all collections on the shop, not including products.
     fetchAllWithProducts(): Promise<any[]>; // TODO fix to be a type: DOC: Fetches all collections on the shop, including products.
     fetchByHandle(handle: string): Promise<any[]>; // TODO fix to be a type: DOC: Fetches a collection by handle on the shop. Assuming it does not give products
@@ -256,6 +259,11 @@ declare namespace ShopifyBuy {
      */
     price: string;
 
+    priceV2: {
+      amount: string;
+      currencyCode: string;
+    };
+
     /**
      * ID of product variant belongs to
      */
@@ -313,7 +321,9 @@ declare namespace ShopifyBuy {
   export interface Collection {
     handle: string;
     body_html: string;
-    image: Image;
+    description: string;
+    descriptionHtml: string;
+    image?: Image;
     id: string;
     metafields: any[];
     published: boolean;
@@ -323,6 +333,7 @@ declare namespace ShopifyBuy {
     template_suffix: string;
     title: string;
     updated_at: string;
+    products?: Product[];
   }
 
   export interface Cart extends GraphModel {
@@ -495,6 +506,7 @@ declare namespace ShopifyBuy {
     product_id: string;
     src: string;
     variant_ids: Array<string>;
+    altText: string;
   }
 
   export interface ImageVariant extends Image {

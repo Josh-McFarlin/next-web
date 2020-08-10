@@ -37,11 +37,15 @@ const InlineProduct = ({ product }: PropTypes) => {
       >
         <div className={classes.product}>
           {isNew && <div className={classes.newIcon}>New</div>}
-          <img
-            className={classes.productImage}
-            src={images[curImageIndex].src}
-            alt={`Product: ${title} - ${varTitle}`}
-          />
+          {images?.[curImageIndex]?.src != null ? (
+            <img
+              className={classes.productImage}
+              src={images[curImageIndex].src}
+              alt={`Product: ${title} - ${varTitle}`}
+            />
+          ) : (
+            <div className={classes.productImage} />
+          )}
           <div className={classes.infoContainer}>
             <p className={classes.title}>{title}</p>
             <p className={classes.price}>${price}</p>

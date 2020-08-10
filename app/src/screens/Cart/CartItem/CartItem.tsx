@@ -35,7 +35,7 @@ const CartItem = ({ lineItem }: PropTypes) => {
     dispatch(
       updateCartItem({
         id: lineItem.id,
-        quantity: lineItem.quantity + 1,
+        quantity: lineItem.quantity - 1,
       })
     );
   };

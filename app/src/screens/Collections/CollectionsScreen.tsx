@@ -1,8 +1,9 @@
 import * as React from "react";
+import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
-import { Product } from "shopify-buy";
+import { Collection, Product } from "shopify-buy";
 import Layout from "../../components/Layout";
-import InlineProduct from "../../components/shop/InlineProduct";
+import InlineCollection from "../../components/shop/InlineCollection";
 import { SiteConfigType } from "../../../types/sanity/documents/siteConfig";
 import { getSiteConfig } from "../../utils/sanity/actions/siteConfig";
 import { getAllProducts } from "../../utils/shopify/actions/product";
@@ -10,23 +11,23 @@ import { getShopConfig } from "../../utils/sanity/actions/shopConfig";
 import { ShopConfigType } from "../../../types/sanity/documents/shopConfig";
 import { getBlogConfig } from "../../utils/sanity/actions/blogConfig";
 import { BlogConfigType } from "../../../types/sanity/documents/blogConfig";
-import classes from "./ProductsScreen.module.scss";
-import { GetStaticProps } from "next";
+import { getAllCollections } from "../../utils/shopify/actions/collection";
+import classes from "./CollectionsScreen.module.scss";
 
 interface PropTypes {
   preview: boolean;
   siteConfig: SiteConfigType;
   shopConfig: ShopConfigType;
   blogConfig: BlogConfigType;
-  products: Product[];
+  collections: Collection[];
 }
 
-const ProductsScreen = ({
+const CollectionsScreen = ({
   preview,
   siteConfig,
   shopConfig,
   blogConfig,
-  products = [],
+  collections = [],
 }: PropTypes) => (
   <>
     <NextSeo
@@ -45,8 +46,8 @@ const ProductsScreen = ({
       blogConfig={blogConfig}
     >
       <div className={classes.root}>
-        {products.map((product: Product) => (
-          <InlineProduct key={product.id} product={product} />
+        {collections.map((collection: Collection) => (
+          <InlineCollection key={collection.id} collection={collection} />
         ))}
       </div>
     </Layout>
@@ -57,6 +58,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const siteConfig = await getSiteConfig(preview);
   const shopConfig = await getShopConfig(preview);
   const blogConfig = await getBlogConfig(preview);
+  const collections = await getAllCollections();
 
   let products: Product[] = [];
   if (shopConfig.enabled) {
@@ -70,10 +72,11 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       shopConfig,
       blogConfig,
       products,
+      collections,
     },
     // At most every 10 minutes
     revalidate: 10 * 60,
   };
 };
 
-export default ProductsScreen;
+export default CollectionsScreen;

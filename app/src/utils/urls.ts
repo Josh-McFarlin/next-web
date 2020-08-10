@@ -1,6 +1,7 @@
 const prod = process.env.NODE_ENV === "production";
 
-const fixSlug = (slug?: string): string | undefined => slug?.replace(/^\//, "");
+const fixSlug = (slug: string | undefined): string | undefined =>
+  slug?.replace(/^\//, "");
 
 const localWithPort = process.env.PORT
   ? `http://localhost:${process.env.PORT}`
@@ -18,6 +19,11 @@ const urls = {
     shop: {
       index: () => `/shop`,
       cart: () => `/shop/cart`,
+      collections: {
+        all: () => `/shop/collections`,
+        collection: (handle?: string) =>
+          `/shop/collections/${fixSlug(handle) ?? "[handle]"}`,
+      },
       products: {
         all: () => `/shop/products`,
         product: (handle?: string) =>

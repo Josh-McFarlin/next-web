@@ -21,3 +21,13 @@ export const selectItems = createSelector(
   [selectItemsObject],
   (itemsObject: CartState["items"]) => Object.values(itemsObject)
 );
+
+export const selectActionStatus = (
+  state: RootState
+): {
+  actionLoading: CartState["actionLoading"];
+  actionError: CartState["error"];
+} => ({
+  actionLoading: state.cart.actionLoading,
+  actionError: state.cart.error,
+});

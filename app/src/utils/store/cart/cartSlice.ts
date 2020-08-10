@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartState, SetCartAction, SetCartOpenAction } from "./types";
+import {
+  CartState,
+  SetCartAction,
+  SetCartErrorAction,
+  SetCartOpenAction,
+} from "./types";
 
 const initialState: CartState = {
   isOpen: false,
@@ -9,6 +14,8 @@ const initialState: CartState = {
   totalTax: null,
   total: null,
   checkoutUrl: null,
+  actionLoading: false,
+  error: null,
 };
 
 const cartSlice = createSlice({
@@ -31,18 +38,33 @@ const cartSlice = createSlice({
       state.totalTax = totalTax;
       state.total = total;
       state.checkoutUrl = checkoutUrl;
+
+      state.actionLoading = false;
+      state.error = null;
+    },
+    setCartLoading(state) {
+      state.actionLoading = true;
+      state.error = null;
+    },
+    setCartError(state, action: PayloadAction<SetCartErrorAction>) {
+      const { error } = action.payload;
+
+      state.actionLoading = false;
+      state.error = error;
     },
     setCartOpen(state, action: PayloadAction<SetCartOpenAction>) {
       const { isOpen } = action.payload;
 
       state.isOpen = isOpen;
     },
-    toggleCartOpen(state) {
-      state.isOpen = !state.isOpen;
-    },
   },
 });
 
-export const { setCart, setCartOpen, toggleCartOpen } = cartSlice.actions;
+export const {
+  setCart,
+  setCartLoading,
+  setCartError,
+  setCartOpen,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

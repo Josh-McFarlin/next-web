@@ -1,0 +1,45 @@
+@use "sass:color";
+@import "../../../styles/Colors";
+
+.root {
+  width: 100%;
+  background-color: $primary-button-color;
+  color: white;
+  font-size: 16px;
+  font-weight: bolder;
+  padding: 16px 24px;
+  border-radius: 4px;
+  border: none;
+  position: relative;
+
+  &:disabled {
+    background-color: color.scale($primary-button-color, $lightness: -20%);
+    cursor: not-allowed;
+  }
+
+  &.success {
+    background-color: $success-button-color;
+
+    &:disabled {
+      background-color: color.scale($success-button-color, $lightness: -20%) !important;
+    }
+  }
+
+  &.error {
+    background-color: $error-button-color;
+
+    &:disabled {
+      background-color: color.scale($error-button-color, $lightness: -20%) !important;
+    }
+  }
+
+  svg {
+    $size: 32px;
+    width: $size;
+    height: $size;
+    position: absolute;
+    top: calc(50% - (#{$size}/2));
+    left: 16px;
+    fill: white;
+  }
+}

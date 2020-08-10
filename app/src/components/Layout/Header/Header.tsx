@@ -52,6 +52,19 @@ const Header = ({
     }
   };
 
+  const isRouteActive = (item: RouteType | LinkType | string): boolean => {
+    if (typeof item === "string") return item === router.asPath;
+
+    let isActive = false;
+    if ("slug" in item && item.slug != null) {
+      isActive =
+        router.pathname === urls.pages.sanityPage() &&
+        conditionalJoin(router.query.slug) === item.slug.current;
+    }
+
+    return isActive;
+  };
+
   return (
     <div className={classes.root}>
       <SidebarToggle />
@@ -67,17 +80,13 @@ const Header = ({
           {navItems.map((item) => {
             const { _key, title } = item;
 
-            let isActive = false;
-            if ("slug" in item && item.slug != null) {
-              isActive =
-                router.pathname === urls.pages.sanityPage() &&
-                conditionalJoin(router.query.slug) === item.slug.current;
-            }
-
             return (
               <div
                 key={_key}
-                className={clsx(classes.navItem, isActive && classes.active)}
+                className={clsx(
+                  classes.navItem,
+                  isRouteActive(item) && classes.active
+                )}
               >
                 {"slug" in item && item.slug != null ? (
                   <Link
@@ -102,14 +111,24 @@ const Header = ({
             );
           })}
           {blogConfig.enabled && blogConfig.display && (
-            <div className={classes.navItem}>
+            <div
+              className={clsx(
+                classes.navItem,
+                isRouteActive(urls.pages.blog.index()) && classes.active
+              )}
+            >
               <Link href={urls.pages.blog.index()}>
                 <a>Blog</a>
               </Link>
             </div>
           )}
           {shopConfig.enabled && shopConfig.display && (
-            <div className={classes.navItem}>
+            <div
+              className={clsx(
+                classes.navItem,
+                isRouteActive(urls.pages.shop.index()) && classes.active
+              )}
+            >
               <Link href={urls.pages.shop.index()}>
                 <a>Shop</a>
               </Link>
