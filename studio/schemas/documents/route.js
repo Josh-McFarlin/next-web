@@ -20,11 +20,6 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "icon",
-      type: "icon",
-      title: "Icon",
-    },
-    {
       name: "includeInSitemap",
       type: "boolean",
       title: "Include page in sitemap",

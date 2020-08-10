@@ -27,7 +27,6 @@ import skill from "./objects/skill";
 import titledLink from "./objects/titledLink";
 import sectionHeader from "./objects/sectionHeader";
 import figure from "./objects/figure";
-import icon from "./objects/icon";
 import socialLink from "./objects/socialLink";
 import socialLinks from "./objects/socialLinks";
 import formField from "./objects/formField";
@@ -71,7 +70,6 @@ export default createSchema({
     titledLink,
     sectionHeader,
     figure,
-    icon,
     socialLink,
     socialLinks,
     formField,
